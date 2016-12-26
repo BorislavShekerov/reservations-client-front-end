@@ -1,0 +1,16 @@
+nav {
+    background-color: rgba(148, 221, 235, 0.69);
+
+    a.btn-own {
+        border: 1px solid #ffffff;
+        padding: 0.2rem 0.5rem;
+        color: #ffffff;
+
+        &:hover {
+            color: rgba(148, 221, 235, 0.69);
+            cursor: pointer;
+            background-color: #ffffff;
+        }
+        
+    } 
+}

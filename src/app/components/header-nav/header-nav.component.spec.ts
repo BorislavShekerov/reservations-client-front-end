@@ -25,4 +25,10 @@ describe('HeaderNavComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should contain header logo', () => {
+    fixture.detectChanges();
+    let compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('a.navbar-brand').textContent).toContain('Reserve');
+  });
 });

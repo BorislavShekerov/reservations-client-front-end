@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { HeaderNavComponent } from './components/header-nav/header-nav.component';
+import { SearchComponent } from './components/search/search.component';
 
 @Component({
   selector: 'app-root',
