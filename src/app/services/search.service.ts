@@ -9,12 +9,11 @@ export class SearchService {
 
     findVenues(searchTerm: string): Observable<Venue[]> {
         return new Observable(observer => {
-            console.log(observer);
             observer.next(VENUES);
             observer.complete();
 
             // Note that this is optional, you do not have to return this if you require no cleanup
-            return function () { console.log('disposed'); };
+            return function () { console.log('disposed');};
         });
     }
 }

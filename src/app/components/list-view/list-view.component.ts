@@ -4,6 +4,7 @@ import { ActivatedRoute, Params }   from '@angular/router';
 import { Location }                 from '@angular/common';
 import { SearchService } from '../../services/search.service';
 import { Venue } from '../../model/venue';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'app-list-view',
@@ -13,24 +14,33 @@ import { Venue } from '../../model/venue';
 export class ListViewComponent implements OnInit {
   
   private query : String = "";
-  private showLoadingSpinner : boolean = true;
-  private venuesToDisplay : Venue[] = [];
+  showLoadingSpinner : boolean = true;
+  private venuesToDisplay : Venue[];
 
   constructor( private route : ActivatedRoute,
   private location : Location, private searchService : SearchService) { }
 
   ngOnInit() {
-
     this.route.params.subscribe((params : Params) =>{
       let queryString : string = params['queryString'];
-      
+      this.showLoadingSpinner = true;
       setTimeout(() => {
-       this.searchService.findVenues(queryString).subscribe(venues => {
-         this.venuesToDisplay = venues;
-         console.log(venues);
-      })}, 1000);
+        this.showLoadingSpinner = false;
+      
+        this.searchService.findVenues(queryString)
+        .subscribe(venues => {
+        console.log(venues);
+        this.venuesToDisplay =  venues;
+      });
+      }, 1500);
+
     });
 
+  }
+
+  ngIfTest(){
+    console.log("ngIfCalled");
+    return !this.showLoadingSpinner;
   }
 
 }

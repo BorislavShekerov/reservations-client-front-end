@@ -4,3 +4,42 @@ body {
     font-size: 24px;
     background-color: #f4f4f4;
 }
+
+ngb-datepicker {
+    width: 100%;
+    border: none !important;
+}
+
+ngb-datepicker table {
+    width: 100%;
+}
+
+ngb-datepicker button {
+    border-radius: 0px !important;
+    border: 1px solid rgba(148, 221, 235, 0.69) !important;
+    color: rgba(148, 221, 235, 0.69) !important;
+    background-color: #ffffff !important;
+    font-size: 1rem !important;
+}
+
+ngb-datepicker button:hover {
+    border-radius: 0px !important;
+    border: #ffffff !important;
+    color: #ffffff !important;
+    background-color: rgba(148, 221, 235, 0.69) !important;
+}
+
+ngb-datepicker select {
+    border-radius: 0px !important;
+    border: 1px solid rgba(148, 221, 235, 0.69) !important;
+    font-size: 1rem !important;
+}
+
+ngb-datepicker .font-weight-bold {
+    border-bottom: 1px solid rgba(148, 221, 235, 0.69) !important;
+}
+
+ngb-datepicker .bg-primary {
+    border-radius: 0px !important;
+    background-color: rgba(148, 221, 235, 0.69) !important;
+}

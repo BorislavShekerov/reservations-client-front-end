@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Venue } from '../../model/venue';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'app-place-card',
@@ -6,6 +8,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./place-card.component.scss']
 })
 export class PlaceCardComponent implements OnInit {
+
+  @Input()
+  venue: Venue;
 
   constructor() { }
 
