@@ -1,30 +1,10 @@
 <div class="row">
     <div id="searchContainer" class="col-xs-12">
-        <input #searchInputField type="text" placeholder="Аз съм търсачка" />
+        <input #searchInputField type="text" [(ngModel)]="searchInputQuery" (ngModelChange)="addSearchTerm()" placeholder="Аз съм търсачка" />
         <i class="fa fa-search" aria-hidden="true"></i>
     </div>
-    <div id="filterButtonTriggerContainer" *ngIf="!filtersExpanded">
-        <a (click)="filtersExpanded = !filtersExpanded"> Филтри <i class="fa fa-arrow-down" aria-hidden="true"></i> </a>
+    <div id="filterButtonTriggerContainer" *ngIf="showFilterButton">
+        <a (click)="filtersExpanded = !filtersExpanded; showFilterButton = false;"> Филтри <i class="fa fa-arrow-down" aria-hidden="true"></i> </a>
     </div>
-    <div id="filtersContainer" *ngIf="filtersExpanded" class="col-xs-12">
-        <div class="offset-xs-2 col-xs-8">
-            <div id="typeSelector" class="row">
-                <h3> Тип на заведението: </h3>
-                <a class="col-xs-3" *ngFor="let filter of venueTypesFilters">{{filter}}</a>
-            </div>
-            <div class="row">
-                <h3> Дата на резервация: </h3>
-                <form class="form-inline">
-                    <div class="form-group">
-                        <div class="input-group">
-                            <input class="form-control" (click)="d.toggle()" placeholder="Избери дата" name="dp" [(ngModel)]="date" ngbDatepicker #d="ngbDatepicker" (ngModelChange)="filterSearch()">
-                            <div class="input-group-addon" (click)="d.toggle()">
-                                <a><i class="fa fa-calendar" aria-hidden="true"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+    <app-search-filters *ngIf="filtersExpanded" class="col-xs-12"></app-search-filters>
 </div>

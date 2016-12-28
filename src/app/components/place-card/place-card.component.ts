@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Venue } from '../../model/venue';
-import {Observable} from 'rxjs/Observable';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-place-card',

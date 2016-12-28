@@ -1,8 +1,8 @@
-<!--<div class="row">
-    <div *ngIf="showLoadingSpinner" class="dizzy-gillespie"></div>
-</div>-->
 <div class="row">
-    <div *ngIf="ngIfTest()">
+    <div *ngIf="showLoadingSpinner" class="dizzy-gillespie"></div>
+</div>
+<div class="row">
+    <div *ngIf="!showLoadingSpinner">
         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let venue of venuesToDisplay">
             <app-place-card [venue]="venue"></app-place-card>
         </div>

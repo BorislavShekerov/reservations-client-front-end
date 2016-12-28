@@ -1,3 +1,4 @@
+$mainColor: rgba(148, 221, 235, 0.89);
 div {
     &.row {
         margin-bottom: 1rem;
@@ -17,7 +18,7 @@ div {
             i {
                 top: 34%;
                 right: 1.5%;
-                color: rgba(148, 221, 235, 0.69);
+                color: $mainColor;
                 position: absolute;
                 @media (max-width: 576px) {
                     right: 6%;
@@ -37,15 +38,15 @@ div {
             a {
                 display: inline-block;
                 float: right;
-                border: 1px solid rgba(148, 221, 235, 0.69);
-                color: rgba(148, 221, 235, 0.69);
+                border-left: 1px solid $mainColor;
+                border-bottom: 1px solid $mainColor;
+                color: $mainColor;
                 padding: 0.4rem;
-                border-top: none;
                 background-color: #ffffff;
                 &:hover {
                     color: #ffffff;
                     cursor: pointer;
-                    background-color: rgba(148, 221, 235, 0.69);
+                    background-color: $mainColor;
                     border-color: #ffffff;
                 }
             }
@@ -56,43 +57,21 @@ div {
         h3 {
             color: rgba(0, 0, 0, 0.54)
         }
-        &#filtersContainer {
-            background-color: #ffffff;
-            #typeSelector {
-                a {
-                    border: 1px solid rgba(148, 221, 235, 0.69);
-                    text-align: center;
-                }
+    }
+}
+
+#sliderContainer {
+    div {
+        &.row {
+            margin-bottom: 0px;
+        }
+        span {
+            display: inline-block;
+            &.slider-min-label {
+                float: left;
             }
-            .form-group,
-            .input-group {
-                &:hover {
-                    cursor: pointer;
-                }
-                width: 100%;
-                input {
-                    border: none;
-                    border-bottom: 1px solid rgba(0, 0, 0, 0.16);
-                    font-size: 1.5rem;
-                    border-radius: 0px;
-                    &:hover {
-                        cursor: pointer;
-                    }
-                }
-                .input-group-addon {
-                    width: 5%;
-                    padding: 0px;
-                    border: 0px;
-                    background-color: #ffffff;
-                    border-bottom: 1px solid rgba(0, 0, 0, 0.16);
-                    border-radius: 0px;
-                    color: rgba(148, 221, 235, 0.69);
-                    padding: 0px;
-                    font-size: 1.5rem;
-                }
-                ngb-datepicker {
-                    width: 100%;
-                }
+            &.slider-max-label {
+                float: right;
             }
         }
     }

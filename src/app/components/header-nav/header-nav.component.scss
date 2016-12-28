@@ -1,6 +1,6 @@
+$mainColor: rgba(148, 221, 235, 0.89);
 nav {
-    background-color: rgba(148, 221, 235, 0.69);
-
+    background-color: $mainColor;
     h1 {
         color: #ffffff;
         margin-left: 1rem;
@@ -9,12 +9,10 @@ nav {
         border: 1px solid #ffffff;
         padding: 0.2rem 0.5rem;
         color: #ffffff;
-
         &:hover {
-            color: rgba(148, 221, 235, 0.69);
+            color: $mainColor;
             cursor: pointer;
             background-color: #ffffff;
         }
-        
-    } 
+    }
 }
