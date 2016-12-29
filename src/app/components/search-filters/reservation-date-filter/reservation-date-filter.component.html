@@ -1,0 +1,13 @@
+<div class="offset-xs-2 col-xs-8">
+    <h3> Дата на резервация: </h3>
+    <form class="form-inline">
+        <div class="form-group">
+            <div class="input-group">
+                <input class="form-control" (click)="d.toggle()" placeholder="Избери дата" name="dp" [(ngModel)]="dateModel" ngbDatepicker #d="ngbDatepicker" (ngModelChange)="dateModelChanged()">
+                <div class="input-group-addon" (click)="d.toggle()">
+                    <a><i class="fa fa-calendar" aria-hidden="true"></i></a>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

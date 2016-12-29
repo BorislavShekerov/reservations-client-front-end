@@ -1,32 +1,6 @@
+$mainColor: rgba(148, 221, 235, 0.89);
 div {
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.08);
-    background-color: #ffffff;
-    padding: 0px;
-    >div {
-        >a {
-            margin-top: 0.5rem;
-            display: inline-block;
-            float: right;
-            color: $mainColor;
-            border-left: 1px solid $mainColor;
-            border-top: 1px solid $mainColor;
-            padding: 0.4rem;
-        }
-    }
-    #typeSelector {
-        a {
-            border: 1px solid $mainColor;
-            color: $mainColor;
-            text-align: center;
-            &:hover {
-                cursor: pointer;
-            }
-            &.active-venue-type-filter {
-                background-color: $mainColor;
-                color: #ffffff;
-            }
-        }
-    }
+    margin-bottom: 1rem;
     .form-group,
     .input-group {
         &:hover {

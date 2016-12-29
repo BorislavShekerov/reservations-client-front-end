@@ -1,0 +1,28 @@
+$mainColor: rgba(148, 221, 235, 0.89);
+div {
+    margin-bottom: 1rem;
+    a {
+        border: 1px solid $mainColor;
+        color: $mainColor;
+        text-align: center;
+        &:hover {
+            cursor: pointer;
+        }
+        &.active-venue-type-filter {
+            background-color: $mainColor;
+            color: #ffffff;
+        }
+    }
+    &.row {
+        margin-bottom: 0px;
+    }
+    span {
+        display: inline-block;
+        &.slider-min-label {
+            float: left;
+        }
+        &.slider-max-label {
+            float: right;
+        }
+    }
+}

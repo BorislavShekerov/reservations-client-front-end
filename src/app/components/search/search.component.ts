@@ -1,12 +1,15 @@
 import { Component, OnInit, ElementRef, ViewChild, Renderer, trigger, state, style, transition, animate } from '@angular/core';
-import { I18n } from '../../services/custom-language-datepicker.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
-import { Subject } from 'rxjs/Subject';
+import { PostFilterUrlPreparator } from '../../services/post-filter-url-preparation.service';
 import { Observable } from 'rxjs/Observable';
 import { Venue } from '../../model/venue';
-import { PostFilterUrlPreparator } from '../../services/post-filter-url-preparation.service';
 import { UrlToFilterDecoder } from '../../services/url-to-filters-decoder.service';
+import { Subject } from 'rxjs/Subject';
+import { NgbDatepickerI18n, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { I18n } from '../../services/custom-language-datepicker.service';
+import { CustomDatepickerI18n } from '../../services/custom-language-datepicker.service';
+import { VenueFilter } from '../search-filters/venue-type-filter/venue-type-filter.component';
 
 class UrlParam {
   name: string;
@@ -19,17 +22,11 @@ class DateFilter {
   day: string;
 }
 
-export class VenueFilter {
-  isFiltered: boolean;
-  type: string;
-}
-
-
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss'],
-  providers: [UrlToFilterDecoder, PostFilterUrlPreparator, Location, { provide: LocationStrategy, useClass: PathLocationStrategy }],
+  providers: [UrlToFilterDecoder, PostFilterUrlPreparator, Location, { provide: LocationStrategy, useClass: PathLocationStrategy }, I18n, { provide: NgbDatepickerI18n, useClass: CustomDatepickerI18n }],
   animations: [
     trigger(
       'myAnimation', [
@@ -46,19 +43,20 @@ export class VenueFilter {
   ]
 })
 export class SearchComponent implements OnInit {
-
-
-  private currentLocation: Location;
   private filtersExpanded: boolean = false;
-  private venueTypeFilters: VenueFilter[] = [{ isFiltered: false, type: "Ресторант" }, { isFiltered: false, type: "Клуб" }, { isFiltered: false, type: "Кафе" }, { isFiltered: false, type: "Бар" }];
   private searchInputQuery: string = "";
   private searchTerms = new Subject<string>();
   private showFilterButton: boolean = true;
   private ageSliderModel: number = 2;
+  private dateModel: NgbDateStruct;
+  private currentLocation: Location;
+  private venueTypeFilters: VenueFilter[] = [{ isFiltered: false, type: "Ресторант" }, { isFiltered: false, type: "Клуб" }, { isFiltered: false, type: "Кафе" }, { isFiltered: false, type: "Бар" }];
+  private peopleGoingModel: number;
+  private urlContents: string[];
 
   @ViewChild('searchInputField') searchInputFiled: ElementRef;
 
-  constructor(private renderer: Renderer, private router: Router, private location: Location, private postFilterUrlPreparator: PostFilterUrlPreparator, private urlToFilterDecoder: UrlToFilterDecoder) { this.currentLocation = location; }
+  constructor(private renderer: Renderer, private router: Router, private location: Location, private postFilterUrlPreparator: PostFilterUrlPreparator, private urlToFilterDecoder: UrlToFilterDecoder) { this.urlContents = location.path().split("/"); }
 
   ngOnInit() {
     this.renderer.invokeElementMethod(this.searchInputFiled.nativeElement,
@@ -79,35 +77,37 @@ export class SearchComponent implements OnInit {
   }
 
   initializeFilterFields() {
-    let urlContents: string[] = this.currentLocation.path().split("/");
-    if (urlContents.length > 2) {
-
-      this.searchInputQuery = this.urlToFilterDecoder.decodeSearchQuery(urlContents);
-      this.dateModel = this.urlToFilterDecoder.decodeDateModel(urlContents);
-      this.urlToFilterDecoder.decodeVenueTypeFilters(urlContents, this.venueTypeFilters);
+    if (this.urlContents.length > 2) {
+      this.searchInputQuery = this.urlToFilterDecoder.decodeSearchQuery(this.urlContents);
+      this.dateModel = this.urlToFilterDecoder.decodeDateModel(this.urlContents);
+      this.urlToFilterDecoder.decodeVenueTypeFilters(this.urlContents, this.venueTypeFilters);
+      this.peopleGoingModel = this.urlToFilterDecoder.decodePeopleGoingModel(this.urlContents);
     }
   }
 
   filterSearch() {
-    let newUrl: string = this.postFilterUrlPreparator.prepareNewUrl(this.venueTypeFilters, this.dateModel, this.searchInputQuery);
+    let newUrl: string = this.postFilterUrlPreparator.prepareNewUrl(this.venueTypeFilters, this.dateModel, this.searchInputQuery, this.peopleGoingModel);
     this.router.navigate([newUrl]);
   }
 
-  venueTypeFilterClicked(filterClicked: VenueFilter) {
-    for (let venue of this.venueTypeFilters) {
-      if (venue.type == filterClicked.type) {
-        venue.isFiltered = !filterClicked.isFiltered;
-        break;
-      }
-    }
-
+  handleDateModelUpdate(updatedDateModel: NgbDateStruct) {
+    this.dateModel = updatedDateModel;
     this.filterSearch();
   }
 
-  displayFilterButton(){
-    if(!this.filtersExpanded){
+  handleVenueModelUpdate(updatedVenueFilters: VenueFilter[]) {
+    this.venueTypeFilters = updatedVenueFilters;
+    this.filterSearch();
+  }
+
+  handlePeopleGoingModelUpdate(updatedPeopleGoingModel: number) {
+    this.peopleGoingModel = updatedPeopleGoingModel;
+    this.filterSearch();
+  }
+
+  displayFilterButton() {
+    if (!this.filtersExpanded) {
       this.showFilterButton = true;
     }
   }
-
 }

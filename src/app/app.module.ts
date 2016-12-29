@@ -15,7 +15,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { PlaceCardComponent } from './components/place-card/place-card.component';
 
 import { SearchService } from './services/search.service';
-import { SearchFiltersComponent } from './components/search-filters/search-filters.component';
+import { VenueTypeFilterComponent } from './components/search-filters/venue-type-filter/venue-type-filter.component';
+import { ReservationDateFilterComponent } from './components/search-filters/reservation-date-filter/reservation-date-filter.component';
+import { PeopleAttendanceFilterComponent } from './components/search-filters/people-attendance-filter/people-attendance-filter.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { SearchFiltersComponent } from './components/search-filters/search-filte
     SearchComponent,
     ListViewComponent,
     PlaceCardComponent,
-    SearchFiltersComponent
+    VenueTypeFilterComponent,
+    ReservationDateFilterComponent,
+    PeopleAttendanceFilterComponent
   ],
   imports: [
     BrowserModule,

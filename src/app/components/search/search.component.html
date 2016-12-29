@@ -6,5 +6,12 @@
     <div id="filterButtonTriggerContainer" *ngIf="showFilterButton">
         <a (click)="filtersExpanded = !filtersExpanded; showFilterButton = false;"> Филтри <i class="fa fa-arrow-down" aria-hidden="true"></i> </a>
     </div>
-    <app-search-filters *ngIf="filtersExpanded" class="col-xs-12"></app-search-filters>
+    <div id="filtersContainer" [@myAnimation]="filtersExpanded" (@myAnimation.done)="displayFilterButton()" *ngIf="filtersExpanded" class="row">
+        <app-venue-type-filter class="row" [venueTypeFilters]="this.venueTypeFilters" (venueModelUpdate)="handleVenueModelUpdate($event)"></app-venue-type-filter>
+        <app-reservation-date-filter class="row" [dateModel]="this.dateModel" (dateModelUpdate)="handleDateModelUpdate($event)"></app-reservation-date-filter>
+        <app-people-attendance-filter class="row" [peopleGoingModel]="this.peopleGoingModel" (peopleGoingModelUpdate)="handlePeopleGoingModelUpdate($event)"></app-people-attendance-filter>
+        <div class="col-xs-12">
+            <a (click)="filtersExpanded = !filtersExpanded">Скрии Филтри<i class="fa fa-arrow-up" aria-hidden="true"></i></a>
+        </div>
+    </div>
 </div>

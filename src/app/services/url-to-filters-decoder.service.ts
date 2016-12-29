@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { VenueFilter } from '../components/search/search.component';
+import { VenueFilter } from '../components/search-filters/search-filters.component';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
 @Injectable()
@@ -27,11 +27,20 @@ export class UrlToFilterDecoder {
 
     decodeSearchQuery(urlContents: string[]): string {
         let searchInputQuery: string;
-        if (urlContents[2] != "date" && urlContents[2] != "type") {
+        if (urlContents[2] != "date" && urlContents[2] != "type" && urlContents[2] != "peopleGoing") {
             searchInputQuery = urlContents[2];
         }
 
         return searchInputQuery;
     }
 
+    decodePeopleGoingModel(urlContents: string[]): number {
+        let peopleGoingModel: number;
+
+        if (urlContents.indexOf("peopleGoing") > -1) {
+            peopleGoingModel = +urlContents[urlContents.indexOf("peopleGoing") + 1];
+        }
+
+        return peopleGoingModel;
+    }
 }
