@@ -8,16 +8,16 @@ body {
 
 /* Datepicker Custom */
 
-ngb-datepicker {
+app-reservation-date-filter ngb-datepicker {
     width: 100%;
     border: none !important;
 }
 
-ngb-datepicker table {
+app-reservation-date-filter ngb-datepicker table {
     width: 100%;
 }
 
-ngb-datepicker button {
+app-reservation-date-filter ngb-datepicker button {
     border-radius: 0px !important;
     border: 1px solid rgba(148, 221, 235, 0.89) !important;
     color: rgba(148, 221, 235, 0.89) !important;
@@ -25,26 +25,104 @@ ngb-datepicker button {
     font-size: 1rem !important;
 }
 
-ngb-datepicker button:hover {
+app-reservation-date-filter ngb-datepicker button:hover {
     border-radius: 0px !important;
     border: #ffffff !important;
     color: #ffffff !important;
     background-color: rgba(148, 221, 235, 0.89) !important;
 }
 
-ngb-datepicker select {
+app-reservation-date-filter ngb-datepicker select {
     border-radius: 0px !important;
     border: 1px solid rgba(148, 221, 235, 0.89) !important;
     font-size: 1rem !important;
 }
 
-ngb-datepicker .font-weight-bold {
+app-reservation-date-filter ngb-datepicker .font-weight-bold {
     border-bottom: 1px solid rgba(148, 221, 235, 0.89) !important;
 }
 
-ngb-datepicker .bg-primary {
+app-reservation-date-filter ngb-datepicker .bg-primary {
     border-radius: 0px !important;
     background-color: rgba(148, 221, 235, 0.89) !important;
+}
+
+app-venue-card ngb-datepicker {
+    width: 90% !important;
+    border: none !important;
+}
+
+app-venue-card ngb-datepicker table {
+    width: 100% !important;
+}
+
+app-venue-card ngb-datepicker button,
+app-venue-card ngb-datepicker select {
+    background: inherit !important;
+    color: #ffffff !important;
+    border: 1px solid #ffffff !important;
+    border-radius: 0 !important;
+}
+
+app-venue-card ngb-datepicker .bg-primary {
+    border-radius: 0px !important;
+    color: rgba(148, 221, 235, 0.89) !important;
+    background-color: #ffffff !important;
+}
+
+app-venue-card ngb-datepicker .btn-secondary {
+    border-radius: 0px !important;
+    background-color: inherit;
+    color: white;
+    border: 1px solid white;
+}
+
+app-venue-card ngb-datepicker .weekday,
+app-venue-card ngb-datepicker .weekend {
+    color: #ffffff;
+}
+
+app-venue-card ngb-datepicker .btn-secondary:hover {
+    background-color: inherit !important;
+    color: #ffffff !important;
+    border-color: inherit;
+}
+
+app-venue-card ngb-datepicker .bg-primary:hover {
+    border-radius: 0px !important;
+    color: rgba(148, 221, 235, 0.89) !important;
+    background-color: #ffffff !important;
+    border-color: #ffffff;
+}
+
+app-venue-card ngb-datepicker .hidden {
+    display: none;
+}
+
+app-venue-card app-people-attendance-filter>div {
+    margin-bottom: 0px !important;
+}
+
+app-venue-card app-people-attendance-filter span.ui-slider-handle {
+    margin-top: 0px;
+}
+
+app-venue-card app-people-attendance-filter {
+    color: #ffffff;
+}
+
+app-venue-card app-people-attendance-filter h3 {
+    font-size: 1rem !important;
+    width: 110%;
+    margin-left: -0.5rem;
+    margin-top: 0.4rem;
+}
+
+@media screen and (max-width: 576px) {
+    app-venue-card app-people-attendance-filter h3 {
+        width: 120%;
+        margin-left: -1rem;
+    }
 }
 
 

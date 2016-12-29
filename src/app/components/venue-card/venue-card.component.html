@@ -1,0 +1,15 @@
+<div class="card-own">
+    <div (click)='showOverlay = true'>
+        <img [src]="venue.mainPicUrl" />
+        <div id="titleContainer">
+            <h4> {{venue.name}} </h4>
+            <p> {{venue.type}} </p>
+        </div>
+    </div>
+    <div *ngIf="showOverlay">
+        <app-reservation-check-overlay [venue]="this.venue" [peopleAttending]="peopleAttending" [dateModel]="dateModel" (overlayCloseEventEmitter)="showOverlay = false" *ngIf="!dateModel || !peopleAttending">
+        </app-reservation-check-overlay>
+        <app-reservation-initiation-overlay *ngIf="dateModel && peopleAttending">
+        </app-reservation-initiation-overlay>
+    </div>
+</div>

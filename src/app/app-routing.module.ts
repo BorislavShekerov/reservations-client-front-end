@@ -14,14 +14,14 @@ const routes: Routes = [
   { path: 'listview/type/:type/date/:date', component: ListViewComponent },
   { path: 'listview/:queryString/type/:type/date/:date', component: ListViewComponent },
 
-  { path: 'listview/peopleGoing/:peopleGoing', component: ListViewComponent },
-  { path: 'listview/:queryString/peopleGoing/:peopleGoing', component: ListViewComponent },
-  { path: 'listview/type/:type/peopleGoing/:peopleGoing', component: ListViewComponent },
-  { path: 'listview/:queryString/type/:type/peopleGoing/:peopleGoing', component: ListViewComponent },
-  { path: 'listview/date/:date/peopleGoing/:peopleGoing', component: ListViewComponent },
-  { path: 'listview/:queryString/date/:date/peopleGoing/:peopleGoing', component: ListViewComponent },
-  { path: 'listview/type/:type/date/:date/peopleGoing/:peopleGoing', component: ListViewComponent },
-  { path: 'listview/:queryString/type/:type/date/:date/peopleGoing/:peopleGoing', component: ListViewComponent },
+  { path: 'listview/peopleAttending/:peopleAttending', component: ListViewComponent },
+  { path: 'listview/:queryString/peopleAttending/:peopleAttending', component: ListViewComponent },
+  { path: 'listview/type/:type/peopleAttending/:peopleAttending', component: ListViewComponent },
+  { path: 'listview/:queryString/type/:type/peopleAttending/:peopleAttending', component: ListViewComponent },
+  { path: 'listview/date/:date/peopleAttending/:peopleAttending', component: ListViewComponent },
+  { path: 'listview/:queryString/date/:date/peopleAttending/:peopleAttending', component: ListViewComponent },
+  { path: 'listview/type/:type/date/:date/peopleAttending/:peopleAttending', component: ListViewComponent },
+  { path: 'listview/:queryString/type/:type/date/:date/peopleAttending/:peopleAttending', component: ListViewComponent },
 
   { path: 'listview', component: ListViewComponent }
 ];

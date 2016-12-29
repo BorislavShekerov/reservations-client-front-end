@@ -2,15 +2,19 @@ import { NgbDatepickerI18n } from '@ng-bootstrap/ng-bootstrap';
 import { Injectable } from '@angular/core';
 
 const I18N_VALUES = {
-    bg:{
+    bgFull:{
         weekdays: ['Понеделник', 'Вторник', 'Сряда', 'Четвъртък', 'Петък', 'Събота', 'Неделя'],
         months: ['Януари', 'Февруари', 'Март', 'Април', 'Май', 'Юни', 'Юли', 'Август', 'Септември', 'Октомври', 'Ноември', 'Декември'],
+    },
+    bgShort:{
+        weekdays: ['Пон', 'Вт', 'Ср', 'Чет', 'Пет', 'Съб', 'Нед'],
+        months: ['Януари', 'Февруари', 'Март', 'Април', 'Май', 'Юни', 'Юли', 'Август', 'Септември', 'Октомври', 'Ноември', 'Декември']
     }
 };
 
 @Injectable()
 export class I18n {
-    language = 'bg';
+    language = 'bgFull';
 }
 
 // Define custom service providing the months and weekdays translations

@@ -1,0 +1,7 @@
+<div [@slideRightIn]="animationSlideIn" (@slideRightIn.done)="checkSlideInDirection()">
+    <span (click)="animationSlideIn = false"><i class="fa fa-times" aria-hidden="true"></i></span>
+    <h3> Посочете дата за резервация </h3>
+    <ngb-datepicker #dp [(ngModel)]="model" (navigate)="date = $event.next" outsideDays="collapsed"></ngb-datepicker>
+    <app-people-attendance-filter [peopleGoingModel]="this.peopleGoingModel" (peopleGoingModelUpdate)="handlePeopleGoingModelUpdate($event)"></app-people-attendance-filter>
+    <a click="">Провери за места</a>
+</div>

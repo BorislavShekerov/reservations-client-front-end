@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { VenueFilter } from '../components/search-filters/search-filters.component';
+import { VenueFilter } from '../components/search-filters/venue-type-filter/venue-type-filter.component';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
 @Injectable()

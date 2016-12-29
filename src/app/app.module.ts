@@ -12,12 +12,14 @@ import { SearchComponent } from './components/search/search.component';
 import { ListViewComponent } from './components/list-view/list-view.component';
 
 import { AppRoutingModule } from './app-routing.module';
-import { PlaceCardComponent } from './components/place-card/place-card.component';
+import { PlaceCardComponent } from './components/venue-card/venue-card.component';
 
 import { SearchService } from './services/search.service';
 import { VenueTypeFilterComponent } from './components/search-filters/venue-type-filter/venue-type-filter.component';
 import { ReservationDateFilterComponent } from './components/search-filters/reservation-date-filter/reservation-date-filter.component';
 import { PeopleAttendanceFilterComponent } from './components/search-filters/people-attendance-filter/people-attendance-filter.component';
+import { ReservationCheckOverlayComponent } from './components/venue-card/overlays/reservation-check-overlay/reservation-check-overlay.component';
+import { ReservationInitiationOverlayComponent } from './components/venue-card/overlays/reservation-initiation-overlay/reservation-initiation-overlay.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { PeopleAttendanceFilterComponent } from './components/search-filters/peo
     PlaceCardComponent,
     VenueTypeFilterComponent,
     ReservationDateFilterComponent,
-    PeopleAttendanceFilterComponent
+    PeopleAttendanceFilterComponent,
+    ReservationCheckOverlayComponent,
+    ReservationInitiationOverlayComponent
   ],
   imports: [
     BrowserModule,

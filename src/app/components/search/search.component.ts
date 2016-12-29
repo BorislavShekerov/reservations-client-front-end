@@ -51,7 +51,7 @@ export class SearchComponent implements OnInit {
   private dateModel: NgbDateStruct;
   private currentLocation: Location;
   private venueTypeFilters: VenueFilter[] = [{ isFiltered: false, type: "Ресторант" }, { isFiltered: false, type: "Клуб" }, { isFiltered: false, type: "Кафе" }, { isFiltered: false, type: "Бар" }];
-  private peopleGoingModel: number;
+  private peopleAttendingModel: number;
   private urlContents: string[];
 
   @ViewChild('searchInputField') searchInputFiled: ElementRef;
@@ -81,12 +81,15 @@ export class SearchComponent implements OnInit {
       this.searchInputQuery = this.urlToFilterDecoder.decodeSearchQuery(this.urlContents);
       this.dateModel = this.urlToFilterDecoder.decodeDateModel(this.urlContents);
       this.urlToFilterDecoder.decodeVenueTypeFilters(this.urlContents, this.venueTypeFilters);
-      this.peopleGoingModel = this.urlToFilterDecoder.decodePeopleGoingModel(this.urlContents);
+      this.peopleAttendingModel = this.urlToFilterDecoder.decodePeopleGoingModel(this.urlContents);
+      if(!this.peopleAttendingModel){
+        this.peopleAttendingModel = 2;
+      }
     }
   }
 
   filterSearch() {
-    let newUrl: string = this.postFilterUrlPreparator.prepareNewUrl(this.venueTypeFilters, this.dateModel, this.searchInputQuery, this.peopleGoingModel);
+    let newUrl: string = this.postFilterUrlPreparator.prepareNewUrl(this.venueTypeFilters, this.dateModel, this.searchInputQuery, this.peopleAttendingModel);
     this.router.navigate([newUrl]);
   }
 
@@ -101,7 +104,7 @@ export class SearchComponent implements OnInit {
   }
 
   handlePeopleGoingModelUpdate(updatedPeopleGoingModel: number) {
-    this.peopleGoingModel = updatedPeopleGoingModel;
+    this.peopleAttendingModel = updatedPeopleGoingModel;
     this.filterSearch();
   }
 

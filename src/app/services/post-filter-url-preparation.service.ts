@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { VenueFilter } from '../components/search-filters/search-filters.component';
+import { VenueFilter } from '../components/search-filters/venue-type-filter/venue-type-filter.component';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
 /**
@@ -28,7 +28,7 @@ export class PostFilterUrlPreparator {
         }
 
         if (peopleGoing) {
-            newUrlPartitions.push({ constantPart: "/peopleGoing/", variablePart: peopleGoing.toString() });
+            newUrlPartitions.push({ constantPart: "/peopleAttending/", variablePart: peopleGoing.toString() });
         }
 
         let newUrlString = "/listview";

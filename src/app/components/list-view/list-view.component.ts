@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PlaceCardComponent } from '../place-card/place-card.component'
+import { PlaceCardComponent } from '../venue-card/venue-card.component'
 import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
 import { SearchService } from '../../services/search.service';
@@ -16,6 +16,8 @@ export class ListViewComponent implements OnInit {
   private query: String = "";
   showLoadingSpinner: boolean = true;
   private venuesToDisplay: Venue[];
+  private dateSearchCriteria: string;
+  private peopleAttendingSearchCriteria: string;
 
   constructor(private route: ActivatedRoute,
     private location: Location, private searchService: SearchService) { }
@@ -23,6 +25,9 @@ export class ListViewComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
       let queryString: string = params['queryString'];
+      this.dateSearchCriteria = params['date'];
+      this.peopleAttendingSearchCriteria = params['peopleGoing'];
+
       this.showLoadingSpinner = true;
       setTimeout(() => {
         this.showLoadingSpinner = false;

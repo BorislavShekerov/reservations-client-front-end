@@ -1,0 +1,22 @@
+<div id="reservationInitiationOverlay">
+    <div *ngIf="loading">
+        <div class="pacman">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <div *ngIf="!loading">
+        <div *ngIf="freeTables.length > 0" [class.success]="freeTablesMatchingCriteria">
+            <p>Разполагаме с {{freeTables.length}} места задоволяващи критерия ви!
+            </p>
+            <a>Резервирай <i class="fa fa-key" aria-hidden="true"></i></a>
+        </div>
+        <div *ngIf="freeTables.length == 0" [class.warning]="freeTablesMatchingCriteria">
+            <p>Разполагаме с {{freeTables.length}} задоволяващи критерия ви!</p>
+            <a><i class="fa fa-arrow-left" aria-hidden="true"></i>Промени критерия</a>
+        </div>
+    </div>
+</div>

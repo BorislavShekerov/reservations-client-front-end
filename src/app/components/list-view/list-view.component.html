@@ -4,7 +4,7 @@
 <div class="row">
     <div *ngIf="!showLoadingSpinner">
         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-3" *ngFor="let venue of venuesToDisplay">
-            <app-place-card [venue]="venue"></app-place-card>
+            <app-venue-card [venue]="venue"></app-venue-card>
         </div>
     </div>
 </div>
