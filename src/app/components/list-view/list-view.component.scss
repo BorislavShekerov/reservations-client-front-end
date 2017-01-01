@@ -1,6 +1,12 @@
 $c1: #114357;
 $c2: #826C75;
 $c3: #F29492;
+#listView {
+    >div {
+        margin-top: 0.7rem;
+    }
+}
+
 .dizzy-gillespie {
     filter: saturate(3);
     width: 0.1px;
@@ -9,8 +15,17 @@ $c3: #F29492;
     border-radius: 5px;
     animation: loader 3s ease-in infinite, spin 1s linear infinite;
     margin-left: 47%;
+    margin-top: 10%;
+    display: inline-block;
+    position: relative;
+    @media (max-width: 1200px) {
+        margin-top: 25%;
+    }
+    @media (max-width: 768px) {
+        margin-top: 35%;
+    }
     @media (max-width: 576px) {
-        margin-top: 1rem;
+        margin-top: 40%;
         margin-left: 45%;
     }
     &::before {

@@ -13,24 +13,33 @@ import { ActivatedRoute, Params } from '@angular/router';
   providers: [I18n, { provide: NgbDatepickerI18n, useClass: CustomDatepickerI18n }],
 })
 export class PlaceCardComponent implements OnInit {
-  @Input()
-  venue: Venue;
+  @Input()venue: Venue;
   private dateModel: NgbDateStruct;
   private peopleAttending: number;
   private showOverlay: boolean = false;
-
+  private checkTriggeredFromOverlay: boolean = false;
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
       let queryString: string = params['queryString'];
       let dateSearchCriteria = params['date'];
-      this.peopleAttending = params['peopleAttending'];
+      this.peopleAttending = +params['peopleAttending'];
       
       if (dateSearchCriteria) {
         let dateCriteriaContent = dateSearchCriteria.split("-");
         this.dateModel = { year: +dateCriteriaContent[0], month: +dateCriteriaContent[1], day: +dateCriteriaContent[2] };
       }
     });
+  }
+
+  triggerFreeTablesCheck(criteriaToCheckFor){
+    this.checkTriggeredFromOverlay = true;
+    this.dateModel = criteriaToCheckFor.dateModel;
+    this.peopleAttending = criteriaToCheckFor.peopleAttending;
+  }
+
+  resetReservationCriteria(){
+    this.dateModel = null;
   }
 }

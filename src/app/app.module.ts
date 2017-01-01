@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import './rxjs-extensions';
@@ -20,6 +20,9 @@ import { ReservationDateFilterComponent } from './components/search-filters/rese
 import { PeopleAttendanceFilterComponent } from './components/search-filters/people-attendance-filter/people-attendance-filter.component';
 import { ReservationCheckOverlayComponent } from './components/venue-card/overlays/reservation-check-overlay/reservation-check-overlay.component';
 import { ReservationInitiationOverlayComponent } from './components/venue-card/overlays/reservation-initiation-overlay/reservation-initiation-overlay.component';
+import { ReservationOverlayComponent } from './components/overlays/reservation-overlay/reservation-overlay.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { AuthenticatedAppComponent } from './components/authenticated-app/authenticated-app.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +35,11 @@ import { ReservationInitiationOverlayComponent } from './components/venue-card/o
     ReservationDateFilterComponent,
     PeopleAttendanceFilterComponent,
     ReservationCheckOverlayComponent,
-    ReservationInitiationOverlayComponent
+    ReservationInitiationOverlayComponent,
+    ReservationOverlayComponent,
+    PageNotFoundComponent,
+    AppComponent,
+    AuthenticatedAppComponent
   ],
   imports: [
     BrowserModule,
@@ -40,9 +47,11 @@ import { ReservationInitiationOverlayComponent } from './components/venue-card/o
     AppRoutingModule,
     HttpModule,
     NgbModule.forRoot(),
-    SliderModule
+    SliderModule,
+    ReactiveFormsModule
   ],
   providers: [SearchService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ReservationOverlayComponent]
 })
 export class AppModule { }

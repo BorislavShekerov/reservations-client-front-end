@@ -7,9 +7,9 @@
         </div>
     </div>
     <div *ngIf="showOverlay">
-        <app-reservation-check-overlay [venue]="this.venue" [peopleAttending]="peopleAttending" [dateModel]="dateModel" (overlayCloseEventEmitter)="showOverlay = false" *ngIf="!dateModel || !peopleAttending">
+        <app-reservation-check-overlay [venue]="this.venue" [peopleAttending]="peopleAttending" [dateModel]="dateModel" (overlayCloseEventEmitter)="showOverlay = false" (freeTablesCheckEventEmitter)="triggerFreeTablesCheck($event)" *ngIf="!dateModel || !peopleAttending">
         </app-reservation-check-overlay>
-        <app-reservation-initiation-overlay *ngIf="dateModel && peopleAttending">
+        <app-reservation-initiation-overlay *ngIf="dateModel && peopleAttending" [checkTriggeredFromOverlay]="checkTriggeredFromOverlay" [peopleAttending]="peopleAttending" [dateModel]="dateModel" [venueId]="venue.id" (backTriggerEventEmitter)="resetReservationCriteria()">
         </app-reservation-initiation-overlay>
     </div>
 </div>

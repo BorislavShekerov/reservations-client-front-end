@@ -1,0 +1,76 @@
+<div class="modal-header">
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    <h4 class="modal-title">Моля впишете се</h4>
+</div>
+<div class="modal-body">
+    <ngb-accordion #acc="ngbAccordion" [closeOthers]="true" activeIds="ngb-panel-0">
+        <ngb-panel>
+            <template ngbPanelTitle>
+            <span>Вход <i class="fa fa-user-o" aria-hidden="true"></i>
+            </span>
+        </template>
+            <template ngbPanelContent>
+        <form novalidate [formGroup]="loginForm"  (ngSubmit)="submitLoginForm(loginForm.value)">
+          <div *ngIf="invalidLogin" class="alert alert-danger">
+            Невалидни потребителско име и/или парола.
+          </div> 
+          <div class="form-group" [ngClass]="{'has-warning':!loginForm.controls['email'].valid && loginForm.controls['email'].touched}">
+            <input type="email" formControlName="email" placeholder="Имейл" name="email" [formControl]="loginForm.controls['email']"/>
+            <div *ngIf="!loginForm.controls['email'].valid && loginForm.controls['email'].touched" class="alert alert-danger">Моля въведете валиден имейл</div>
+          </div>
+          <div class="form-group" [ngClass]="{'has-warning':!loginForm.controls['password'].valid && loginForm.controls['password'].touched}">
+            <input type="password" formControlName="password" placeholder="Парола" name="password" [formControl]="loginForm.controls['password']"/>
+            <div *ngIf="loginForm.controls['password'].hasError('required') && loginForm.controls['password'].touched" class="alert alert-danger">Моля въведете парола</div>
+          </div>
+          <div>
+            <button [class.disabled]="!loginForm.valid || loading" [disabled]="!loginForm.valid || loading" type="submit"> Вход </button>
+          </div>
+        </form>
+      </template>
+        </ngb-panel>
+        <ngb-panel>
+            <template ngbPanelTitle>
+            <span>Регистрирай се <i class="fa fa-user-plus" aria-hidden="true"></i>
+            </span>
+          </template>
+            <template ngbPanelContent>
+              <form novalidate [formGroup]="registrationForm"  (ngSubmit)="submitRegistrationForm(registrationForm.value)">
+                <div class="form-group" [ngClass]="{'has-warning':!registrationForm.controls['email'].valid && registrationForm.controls['email'].touched}">
+                  <input type="email" formControlName="email" placeholder="Имейл*" name="email" [formControl]="registrationForm.controls['email']"/>
+                  <i *ngIf="registrationForm.controls['email'].valid" class="fa fa-check" aria-hidden="true"></i>
+                  <div *ngIf="!registrationForm.controls['email'].valid && registrationForm.controls['email'].touched" class="alert alert-danger">Моля въведете валиден имейл</div>
+                </div>
+                <div class="form-group" [ngClass]="{'has-warning':!registrationForm.controls['password'].valid && registrationForm.controls['password'].touched}">
+                  <input type="password" formControlName="password" placeholder="Парола*" name="password" [formControl]="registrationForm.controls['password']" #passwordField reverse="true"/>
+                  <i *ngIf="registrationForm.controls['password'].valid" class="fa fa-check" aria-hidden="true"></i>
+                  <div *ngIf="registrationForm.controls['password'].hasError('required') && registrationForm.controls['password'].touched" class="alert alert-danger">Моля въведете парола</div>
+                  <div *ngIf="!registrationForm.controls['password'].valid && !registrationForm.controls['password'].hasError('required') && registrationForm.controls['password'].touched" class="alert alert-danger">Моля въведете поне 8 символа</div>
+                </div>
+                <div class="form-group" [ngClass]="{'has-warning':!registrationForm.controls['passwordRepeat'].valid && registrationForm.controls['passwordRepeat'].touched}">
+                  <input type="passwordRepeat" formControlName="passwordRepeat" placeholder="Повтори парола*" name="passwordRepeat" [formControl]="registrationForm.controls['passwordRepeat']"/>
+                  <i *ngIf="registrationForm.controls['passwordRepeat'].valid" class="fa fa-check" aria-hidden="true"></i>
+                  <div *ngIf="!registrationForm.controls['passwordRepeat'].valid && registrationForm.controls['passwordRepeat'].touched" class="alert alert-danger">Паролите не съвпадат</div>
+                </div>
+                <div class="form-group" [ngClass]="{'has-warning':!registrationForm.controls['firstName'].valid && registrationForm.controls['firstName'].touched}">
+                  <input type="text" formControlName="firstName" placeholder="Собствено име*" name="firstName" [formControl]="registrationForm.controls['firstName']"/>
+                  <i *ngIf="registrationForm.controls['firstName'].valid" class="fa fa-check" aria-hidden="true"></i>
+                  <div *ngIf="!registrationForm.controls['firstName'].valid && registrationForm.controls['firstName'].touched" class="alert alert-danger">Моля въведете собстено име</div>
+                </div>
+                <div class="form-group" [ngClass]="{'has-warning':!registrationForm.controls['lastName'].valid && registrationForm.controls['lastName'].touched}">
+                  <i *ngIf="registrationForm.controls['lastName'].valid" class="fa fa-check" aria-hidden="true"></i>
+                  <input type="text" formControlName="lastName" placeholder="Фамилно име*" name="lastName" [formControl]="registrationForm.controls['lastName']"/>
+                  <div *ngIf="!registrationForm.controls['lastName'].valid && registrationForm.controls['lastName'].touched" class="alert alert-danger">Моля въведете фамилно име</div>
+                </div>
+                <div class="form-group">
+                  <input type="tel" placeholder="Телефонен номер" name="phoneNumber" /><i class="fa fa-info" aria-hidden="true" placement="top" ngbTooltip="За да ви изпратим напомнящ SMS."></i>
+                </div>
+                <div>
+                  <button [class.disabled]="!registrationForm.valid || loading" [disabled]="!registrationForm.valid || loading" type="submit"> Готово! </button>
+                </div>
+              </form>
+          </template>
+        </ngb-panel>
+    </ngb-accordion>
+</div>

@@ -1,4 +1,4 @@
-div {
+#reservationCheckOverlay {
     position: absolute;
     top: 0;
     width: 100%;
@@ -20,6 +20,9 @@ div {
         border-bottom: 0px;
         padding: 0.2rem 0.4rem;
         display: inline-block;
+        @media (max-width: 768px) {
+            margin-top: 0.3rem;
+        }
         &:hover {
             background-color: #ffffff;
             color: rgba(158, 223, 236, 0.93);
@@ -37,5 +40,11 @@ div {
         &:hover {
             transform: scale(1.4);
         }
+    }
+    div {
+        position: absolute;
+        bottom: 0px;
+        display: block;
+        width: 100%;
     }
 }

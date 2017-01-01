@@ -1,10 +1,18 @@
 $mainColor: rgba(148, 221, 235, 0.89);
 div {
     margin-bottom: 1rem;
+    h3 {
+        @media (max-width: 576px) {
+            font-size: 1.3rem;
+        }
+    }
     a {
         border: 1px solid $mainColor;
         color: $mainColor;
         text-align: center;
+        @media (max-width: 576px) {
+            font-size: 1.3rem;
+        }
         &:hover {
             cursor: pointer;
         }

@@ -31,10 +31,7 @@ export class PostFilterUrlPreparator {
             newUrlPartitions.push({ constantPart: "/peopleAttending/", variablePart: peopleGoing.toString() });
         }
 
-        let newUrlString = "/listview";
-        if (searchInputQuery) {
-            newUrlString += "/" + searchInputQuery;
-        }
+        let newUrlString = searchInputQuery;
 
         newUrlPartitions.forEach(newUrlPartition => newUrlString += newUrlPartition.constantPart + newUrlPartition.variablePart);
 

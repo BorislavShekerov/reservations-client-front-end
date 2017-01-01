@@ -27,8 +27,10 @@ export class UrlToFilterDecoder {
 
     decodeSearchQuery(urlContents: string[]): string {
         let searchInputQuery: string;
-        if (urlContents[2] != "date" && urlContents[2] != "type" && urlContents[2] != "peopleGoing") {
-            searchInputQuery = urlContents[2];
+        let queryIndex = urlContents.indexOf("listview") + 1;
+
+        if (urlContents[queryIndex] != "date" && urlContents[queryIndex] != "type" && urlContents[queryIndex] != "peopleGoing") {
+            searchInputQuery = urlContents[queryIndex];
         }
 
         return searchInputQuery;

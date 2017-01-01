@@ -1,0 +1,82 @@
+$mainColor: rgba(148, 221, 235, 0.89);
+div {
+    &.card {
+        border-radius: 0px;
+    }
+}
+
+button {
+    font-size: 2.0rem;
+    span {
+        color: #000000;
+        cursor: pointer;
+    }
+}
+
+span {
+    color: $mainColor;
+    font-weight: 600;
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+form {
+    text-align: center;
+    input {
+        margin-bottom: 1rem;
+        display: inline-block;
+        width: 80%;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        &[type="tel"] {
+            position: relative;
+        }
+        &:focus {
+            outline: none;
+        }
+        &:-webkit-autofill {
+            background-color: #ffffff !important;
+        }
+    }
+    i {
+        position: absolute;
+        top: 15%;
+        right: 11%;
+        color: $mainColor;
+    }
+    div {
+        &.form-group {
+            position: relative;
+        }
+        &.alert {
+            width: 80%;
+            margin-left: 10%;
+            font-size: 1.2rem;
+            border-radius: 0px;
+        }
+    }
+    button {
+        padding: 0.2rem 1.5rem;
+        border: 1px solid $mainColor;
+        color: $mainColor;
+        background-color: inherit;
+        &:hover {
+            background-color: $mainColor;
+            color: #ffffff;
+            border: 1px solid #ffffff;
+            cursor: pointer;
+        }
+        &.disabled {
+            color: rgba(148, 221, 235, 0.35);
+            border-color: rgba(148, 221, 235, 0.35);
+            &:hover {
+                color: rgba(148, 221, 235, 0.35);
+                border-color: rgba(148, 221, 235, 0.35);
+                background-color: inherit;
+                cursor: default;
+            }
+        }
+    }
+}

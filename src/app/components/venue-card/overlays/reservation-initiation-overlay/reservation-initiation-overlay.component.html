@@ -1,5 +1,8 @@
 <div id="reservationInitiationOverlay">
-    <div *ngIf="loading">
+    <a (click)="goBackToReservationCheckOverlay()" *ngIf="checkTriggeredFromOverlay && !loading"> <i class="fa fa-arrow-left" aria-hidden="true"></i> Назад
+    </a>
+    <div id="loader" *ngIf="loading">
+        <h3> Търсим ви маса </h3>
         <div class="pacman">
             <div></div>
             <div></div>
@@ -10,9 +13,9 @@
     </div>
     <div *ngIf="!loading">
         <div *ngIf="freeTables.length > 0" [class.success]="freeTablesMatchingCriteria">
-            <p>Разполагаме с {{freeTables.length}} места задоволяващи критерия ви!
+            <p>Разполагаме с <span>{{freeTables.length}} места</span> задоволяващи критерия ви!
             </p>
-            <a>Резервирай <i class="fa fa-key" aria-hidden="true"></i></a>
+            <a (click)="reserveTable()">Резервирай <i class="fa fa-key" aria-hidden="true"></i></a>
         </div>
         <div *ngIf="freeTables.length == 0" [class.warning]="freeTablesMatchingCriteria">
             <p>Разполагаме с {{freeTables.length}} задоволяващи критерия ви!</p>

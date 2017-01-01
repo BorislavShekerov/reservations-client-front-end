@@ -143,3 +143,23 @@ span.ui-slider-handle:hover {
 div.ui-slider {
     margin-top: 1.0rem;
 }
+
+
+/* Accordion Custom */
+
+ngb-accordion a:hover,
+ngb-accordion a:focus {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+/* Modal Custom */
+
+ngb-modal-window div.modal-content {
+    border-radius: 0;
+}
+
+div.card {
+    border-radius: 0px !important;
+}

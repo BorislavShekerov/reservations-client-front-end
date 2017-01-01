@@ -1,6 +1,11 @@
 $mainColor: rgba(148, 221, 235, 0.89);
 div {
     margin-bottom: 1rem;
+    h3 {
+        @media (max-width: 576px) {
+            font-size: 1.3rem;
+        }
+    }
     .form-group,
     .input-group {
         &:hover {

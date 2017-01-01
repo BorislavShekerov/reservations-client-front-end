@@ -1,5 +1,5 @@
 import { Component, OnInit, ElementRef, ViewChild, Renderer, trigger, state, style, transition, animate } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { PostFilterUrlPreparator } from '../../services/post-filter-url-preparation.service';
 import { Observable } from 'rxjs/Observable';
@@ -10,6 +10,7 @@ import { NgbDatepickerI18n, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { I18n } from '../../services/custom-language-datepicker.service';
 import { CustomDatepickerI18n } from '../../services/custom-language-datepicker.service';
 import { VenueFilter } from '../search-filters/venue-type-filter/venue-type-filter.component';
+import { slideInDownAnimation } from '../../animations/slide-in-down.animation';
 
 class UrlParam {
   name: string;
@@ -27,20 +28,7 @@ class DateFilter {
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss'],
   providers: [UrlToFilterDecoder, PostFilterUrlPreparator, Location, { provide: LocationStrategy, useClass: PathLocationStrategy }, I18n, { provide: NgbDatepickerI18n, useClass: CustomDatepickerI18n }],
-  animations: [
-    trigger(
-      'myAnimation', [
-        transition(':enter', [
-          style({ transform: 'translateY(-100%)', opacity: 0 }),
-          animate('500ms', style({ transform: 'translateY(0)', opacity: 1 }))
-        ]),
-        transition(':leave', [
-          style({ transform: 'translateY(0)', 'opacity': 1 }),
-          animate('500ms', style({ transform: 'translateY(-100%)', opacity: 0 }))
-        ])
-      ]
-    )
-  ]
+  animations: [ slideInDownAnimation ]
 })
 export class SearchComponent implements OnInit {
   private filtersExpanded: boolean = false;
@@ -56,7 +44,9 @@ export class SearchComponent implements OnInit {
 
   @ViewChild('searchInputField') searchInputFiled: ElementRef;
 
-  constructor(private renderer: Renderer, private router: Router, private location: Location, private postFilterUrlPreparator: PostFilterUrlPreparator, private urlToFilterDecoder: UrlToFilterDecoder) { this.urlContents = location.path().split("/"); }
+  constructor(private renderer: Renderer, private router: Router, private route: ActivatedRoute, private location: Location, private postFilterUrlPreparator: PostFilterUrlPreparator, private urlToFilterDecoder: UrlToFilterDecoder) { 
+    this.urlContents = location.path().split("/"); 
+  }
 
   ngOnInit() {
     this.renderer.invokeElementMethod(this.searchInputFiled.nativeElement,
@@ -88,9 +78,15 @@ export class SearchComponent implements OnInit {
     }
   }
 
+  initializeTypeFilters(typesUrl: string){
+    let urlTypeFilterString: string = decodeURIComponent(typesUrl);
+    let urlTypeFilterContents: string[] = urlTypeFilterString.split("+");
+
+    this.venueTypeFilters.filter(venueTypeFilter => urlTypeFilterContents.indexOf(venueTypeFilter.type) > -1).forEach(venueTypeFilter => venueTypeFilter.isFiltered = true);
+  }
   filterSearch() {
     let newUrl: string = this.postFilterUrlPreparator.prepareNewUrl(this.venueTypeFilters, this.dateModel, this.searchInputQuery, this.peopleAttendingModel);
-    this.router.navigate([newUrl]);
+    this.router.navigate([newUrl],{ relativeTo: this.route });
   }
 
   handleDateModelUpdate(updatedDateModel: NgbDateStruct) {

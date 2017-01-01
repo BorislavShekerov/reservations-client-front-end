@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { I18n } from '../../../services/custom-language-datepicker.service';
 import { CustomDatepickerI18n } from '../../../services/custom-language-datepicker.service';
-import { NgbDatepickerI18n, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDatepickerI18n } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-reservation-date-filter',
@@ -11,8 +11,8 @@ import { NgbDatepickerI18n, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 })
 export class ReservationDateFilterComponent {
 
-  @Input() dateModel: NgbDateStruct;
-  @Output() dateModelUpdate: EventEmitter<NgbDateStruct> = new EventEmitter();
+  @Input() dateModel;
+  @Output() dateModelUpdate: EventEmitter<any> = new EventEmitter();
 
   dateModelChanged() {
     this.dateModelUpdate.next(this.dateModel);
