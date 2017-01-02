@@ -1,10 +1,18 @@
 <div class="row">
     <div id="searchContainer" class="col-xs-12">
-        <input #searchInputField type="text" [(ngModel)]="searchInputQuery" (ngModelChange)="addSearchTerm()" placeholder="Tърси тук" />
-        <i class="fa fa-search" aria-hidden="true"></i>
+        <div>
+            <input #searchInputField type="text" [(ngModel)]="searchInputQuery" (ngModelChange)="addSearchTerm()" placeholder="Tърси тук" />
+            <i class="fa fa-search" aria-hidden="true"></i>
+        </div>
+        <!--<div>
+            <a (click)="filtersExpanded = !filtersExpanded; showFilterButton = false;"> Филтри <i class="fa fa-arrow-down" aria-hidden="true"></i> </a>
+        </div>-->
     </div>
-    <div id="filterButtonTriggerContainer" *ngIf="showFilterButton">
-        <a (click)="filtersExpanded = !filtersExpanded; showFilterButton = false;"> Филтри <i class="fa fa-arrow-down" aria-hidden="true"></i> </a>
+    <div id="filterButtonTriggerContainer">
+        <div>
+            <a (click)="changeView('listview')" [class.active]="!isDisplayedViewMap()"> Лист <i class="fa fa-list" aria-hidden="true"></i> </a>
+            <a (click)="changeView('mapview')" [class.active]="isDisplayedViewMap()"> Карта <i class="fa fa-map-marker" aria-hidden="true"></i> </a>
+        </div>
     </div>
     <div id="filtersContainer" [@myAnimation]="filtersExpanded" (@myAnimation.done)="displayFilterButton()" *ngIf="filtersExpanded" class="row">
         <app-venue-type-filter class="row" [venueTypeFilters]="this.venueTypeFilters" (venueModelUpdate)="handleVenueModelUpdate($event)"></app-venue-type-filter>

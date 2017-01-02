@@ -3,4 +3,6 @@ export class Venue {
     id: string;
     type: string;
     mainPicUrl: string;
+    latitude: number;
+    longitude: number;
 }

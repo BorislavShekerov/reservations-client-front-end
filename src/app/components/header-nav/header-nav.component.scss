@@ -9,10 +9,21 @@ nav {
         border: 1px solid #ffffff;
         padding: 0.2rem 0.5rem;
         color: #ffffff;
+        display: inline-block;
+        float: right;
         &:hover {
             color: $mainColor;
             cursor: pointer;
             background-color: #ffffff;
         }
+    }
+    app-login-form {
+        position: absolute;
+        right: 0;
+        width: 19%;
+        background-color: rgba(148, 221, 235, 0.89);
+        top: 100%;
+        border-left: 1px solid rgba(0, 0, 0, 0.16);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.16);
     }
 }

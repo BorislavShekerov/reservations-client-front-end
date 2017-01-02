@@ -1,7 +1,10 @@
 <nav class="navbar navbar-full navbar-light bg-faded">
-  <button class="navbar-toggler hidden-lg-up" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"></button>
-  <div class="collapse navbar-toggleable-md" id="navbarResponsive">
-    <h1 class="navbar-brand mb-0" href="#">Резерво</h1>
-    <a class="btn-own float-xs-right">Вход <i class="fa fa-user" aria-hidden="true"></i></a>
-  </div>
+    <button class="navbar-toggler hidden-lg-up" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"></button>
+    <div class="collapse navbar-toggleable-md" id="navbarResponsive">
+        <h1 class="navbar-brand mb-0" href="#">Резерво</h1>
+        <div id="formDropdown" class="float-xs-right">
+            <a class="btn-own" (click)="signInFormVisible = !signInFormVisible">Вход <i class="fa fa-user" aria-hidden="true"></i></a>
+            <app-login-form *ngIf="signInFormVisible" (loginOutcome)="handleLoginOutcome($event)"></app-login-form>
+        </div>
+    </div>
 </nav>

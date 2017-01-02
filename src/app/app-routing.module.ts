@@ -4,9 +4,9 @@ import { ListViewComponent } from './components/list-view/list-view.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { SearchComponent } from './components/search/search.component';
 import { AuthenticatedAppComponent } from './components/authenticated-app/authenticated-app.component';
-
+import { AuthGuard } from './services/auth-guard.service';
+import { MapViewComponent } from './components/map-view/map-view.component'
 const routes: Routes = [
-
   { path: '', redirectTo: '/search/listview', pathMatch: 'full' },
   {
     path: 'search',
@@ -31,10 +31,40 @@ const routes: Routes = [
       { path: 'listview/:queryString/date/:date/peopleAttending/:peopleAttending', component: ListViewComponent },
       { path: 'listview/type/:type/date/:date/peopleAttending/:peopleAttending', component: ListViewComponent },
       { path: 'listview/:queryString/type/:type/date/:date/peopleAttending/:peopleAttending', component: ListViewComponent },
+      { path: 'mapview', component: MapViewComponent }
     ]
   },
-  { path: 'app',
-    component: AuthenticatedAppComponent
+  {
+    path: 'app',
+    component: AuthenticatedAppComponent,
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: 'search',
+        component: SearchComponent,
+        children: [
+          { path: 'listview', component: ListViewComponent },
+          { path: 'listview/:queryString', component: ListViewComponent },
+
+          { path: 'listview/type/:type', component: ListViewComponent },
+          { path: 'listview/:queryString/type/:type', component: ListViewComponent },
+
+          { path: 'listview/date/:date', component: ListViewComponent },
+          { path: 'listview/:queryString/date/:date', component: ListViewComponent },
+          { path: 'listview/type/:type/date/:date', component: ListViewComponent },
+          { path: 'listview/:queryString/type/:type/date/:date', component: ListViewComponent },
+
+          { path: 'listview/peopleAttending/:peopleAttending', component: ListViewComponent },
+          { path: 'listview/:queryString/peopleAttending/:peopleAttending', component: ListViewComponent },
+          { path: 'listview/type/:type/peopleAttending/:peopleAttending', component: ListViewComponent },
+          { path: 'listview/:queryString/type/:type/peopleAttending/:peopleAttending', component: ListViewComponent },
+          { path: 'listview/date/:date/peopleAttending/:peopleAttending', component: ListViewComponent },
+          { path: 'listview/:queryString/date/:date/peopleAttending/:peopleAttending', component: ListViewComponent },
+          { path: 'listview/type/:type/date/:date/peopleAttending/:peopleAttending', component: ListViewComponent },
+          { path: 'listview/:queryString/type/:type/date/:date/peopleAttending/:peopleAttending', component: ListViewComponent },
+        ]
+      }
+    ]
   },
 
   { path: '**', component: PageNotFoundComponent },

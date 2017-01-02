@@ -1,0 +1,16 @@
+<form novalidate [formGroup]="loginForm" (ngSubmit)="submitLoginForm(loginForm.value)">
+    <div *ngIf="invalidLogin" class="alert alert-danger">
+        Невалидни потребителско име и/или парола.
+    </div>
+    <div class="form-group" [ngClass]="{'has-warning':!loginForm.controls['email'].valid && loginForm.controls['email'].touched}">
+        <input type="email" formControlName="email" placeholder="Имейл" name="email" [formControl]="loginForm.controls['email']" />
+        <div *ngIf="!loginForm.controls['email'].valid && loginForm.controls['email'].touched" class="alert alert-danger">Моля въведете валиден имейл</div>
+    </div>
+    <div class="form-group" [ngClass]="{'has-warning':!loginForm.controls['password'].valid && loginForm.controls['password'].touched}">
+        <input type="password" formControlName="password" placeholder="Парола" name="password" [formControl]="loginForm.controls['password']" />
+        <div *ngIf="loginForm.controls['password'].hasError('required') && loginForm.controls['password'].touched" class="alert alert-danger">Моля въведете парола</div>
+    </div>
+    <div>
+        <button [class.disabled]="!loginForm.valid || loading" [disabled]="!loginForm.valid || loading" type="submit"> Вход </button>
+    </div>
+</form>

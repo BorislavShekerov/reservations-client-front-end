@@ -28,7 +28,7 @@ class DateFilter {
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss'],
   providers: [UrlToFilterDecoder, PostFilterUrlPreparator, Location, { provide: LocationStrategy, useClass: PathLocationStrategy }, I18n, { provide: NgbDatepickerI18n, useClass: CustomDatepickerI18n }],
-  animations: [ slideInDownAnimation ]
+  animations: [slideInDownAnimation]
 })
 export class SearchComponent implements OnInit {
   private filtersExpanded: boolean = false;
@@ -41,11 +41,12 @@ export class SearchComponent implements OnInit {
   private venueTypeFilters: VenueFilter[] = [{ isFiltered: false, type: "Ресторант" }, { isFiltered: false, type: "Клуб" }, { isFiltered: false, type: "Кафе" }, { isFiltered: false, type: "Бар" }];
   private peopleAttendingModel: number;
   private urlContents: string[];
+  private chosenView: string;
 
   @ViewChild('searchInputField') searchInputFiled: ElementRef;
 
-  constructor(private renderer: Renderer, private router: Router, private route: ActivatedRoute, private location: Location, private postFilterUrlPreparator: PostFilterUrlPreparator, private urlToFilterDecoder: UrlToFilterDecoder) { 
-    this.urlContents = location.path().split("/"); 
+  constructor(private renderer: Renderer, private router: Router, private route: ActivatedRoute, private location: Location, private postFilterUrlPreparator: PostFilterUrlPreparator, private urlToFilterDecoder: UrlToFilterDecoder) {
+    this.urlContents = location.path().split("/");
   }
 
   ngOnInit() {
@@ -66,19 +67,47 @@ export class SearchComponent implements OnInit {
       .subscribe(searchTerm => this.filterSearch());
   }
 
+  isDisplayedViewMap() {
+    let currentLocation = this.location.path();
+    if (currentLocation.indexOf("mapview") > -1) {
+      this.showFilterButton = false;
+      this.chosenView = 'mapview';
+    } else {
+      this.chosenView = 'listview';
+    }
+
+    return this.chosenView == 'mapview';
+  }
+
+  changeView(viewSelected: string) {
+    let currentLocation = this.location.path();
+    if (currentLocation.indexOf(viewSelected) == -1) {
+      let newLocation: string;
+      if (currentLocation.indexOf('listview') > -1) {
+        newLocation = currentLocation.replace('listview', viewSelected);
+      } else {
+        newLocation = currentLocation.replace('mapview', viewSelected);
+      }
+      this.router.navigate([newLocation], { relativeTo: this.route });
+    }
+  }
+
   initializeFilterFields() {
     if (this.urlContents.length > 2) {
       this.searchInputQuery = this.urlToFilterDecoder.decodeSearchQuery(this.urlContents);
       this.dateModel = this.urlToFilterDecoder.decodeDateModel(this.urlContents);
       this.urlToFilterDecoder.decodeVenueTypeFilters(this.urlContents, this.venueTypeFilters);
       this.peopleAttendingModel = this.urlToFilterDecoder.decodePeopleGoingModel(this.urlContents);
-      if(!this.peopleAttendingModel){
+
+
+
+      if (!this.peopleAttendingModel) {
         this.peopleAttendingModel = 2;
       }
     }
   }
 
-  initializeTypeFilters(typesUrl: string){
+  initializeTypeFilters(typesUrl: string) {
     let urlTypeFilterString: string = decodeURIComponent(typesUrl);
     let urlTypeFilterContents: string[] = urlTypeFilterString.split("+");
 
@@ -86,7 +115,7 @@ export class SearchComponent implements OnInit {
   }
   filterSearch() {
     let newUrl: string = this.postFilterUrlPreparator.prepareNewUrl(this.venueTypeFilters, this.dateModel, this.searchInputQuery, this.peopleAttendingModel);
-    this.router.navigate([newUrl],{ relativeTo: this.route });
+    this.router.navigate([newUrl], { relativeTo: this.route });
   }
 
   handleDateModelUpdate(updatedDateModel: NgbDateStruct) {

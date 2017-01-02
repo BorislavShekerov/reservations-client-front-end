@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import './rxjs-extensions';
 import { SliderModule } from 'primeng/primeng';
+import { AgmCoreModule } from 'angular2-google-maps/core';
 
 import { AppComponent } from './app.component';
 import { HeaderNavComponent } from './components/header-nav/header-nav.component';
@@ -15,6 +16,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { PlaceCardComponent } from './components/venue-card/venue-card.component';
 
 import { SearchService } from './services/search.service';
+import { AuthGuard } from './services/auth-guard.service';
+import { AuthenticationService } from './services/user-authentication.service';
+
 import { VenueTypeFilterComponent } from './components/search-filters/venue-type-filter/venue-type-filter.component';
 import { ReservationDateFilterComponent } from './components/search-filters/reservation-date-filter/reservation-date-filter.component';
 import { PeopleAttendanceFilterComponent } from './components/search-filters/people-attendance-filter/people-attendance-filter.component';
@@ -23,6 +27,10 @@ import { ReservationInitiationOverlayComponent } from './components/venue-card/o
 import { ReservationOverlayComponent } from './components/overlays/reservation-overlay/reservation-overlay.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { AuthenticatedAppComponent } from './components/authenticated-app/authenticated-app.component';
+import { LoginFormComponent } from './components/forms/login-form/login-form.component';
+import { SignupFormComponent } from './components/forms/signup-form/signup-form.component';
+import { SideBarComponent } from './components/authenticated-app/side-bar/side-bar.component';
+import { MapViewComponent } from './components/map-view/map-view.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +47,11 @@ import { AuthenticatedAppComponent } from './components/authenticated-app/authen
     ReservationOverlayComponent,
     PageNotFoundComponent,
     AppComponent,
-    AuthenticatedAppComponent
+    AuthenticatedAppComponent,
+    LoginFormComponent,
+    SignupFormComponent,
+    SideBarComponent,
+    MapViewComponent
   ],
   imports: [
     BrowserModule,
@@ -48,9 +60,12 @@ import { AuthenticatedAppComponent } from './components/authenticated-app/authen
     HttpModule,
     NgbModule.forRoot(),
     SliderModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAyhUakPzZpZZir-IkLWLfFOLhvQvbNSkM'
+    })
   ],
-  providers: [SearchService],
+  providers: [SearchService, AuthGuard, AuthenticationService],
   bootstrap: [AppComponent],
   entryComponents: [ReservationOverlayComponent]
 })

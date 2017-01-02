@@ -3,7 +3,7 @@
     <h3> Посочете дата за резервация </h3>
     <ngb-datepicker #dp [(ngModel)]="model" (navigate)="date = $event.next" outsideDays="collapsed"></ngb-datepicker>
     <app-people-attendance-filter [peopleGoingModel]="this.peopleGoingModel" (peopleGoingModelUpdate)="handlePeopleGoingModelUpdate($event)"></app-people-attendance-filter>
-    <div>
+    <div id="triggerContainer">
         <a (click)="triggerFreeTablesCheck()">Провери за места</a>
     </div>
 </div>

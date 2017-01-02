@@ -1,0 +1,34 @@
+<form novalidate [formGroup]="registrationForm" (ngSubmit)="submitRegistrationForm(registrationForm.value)">
+    <div class="form-group" [ngClass]="{'has-warning':!registrationForm.controls['email'].valid && registrationForm.controls['email'].touched}">
+        <input type="email" formControlName="email" placeholder="Имейл*" name="email" [formControl]="registrationForm.controls['email']" />
+        <i *ngIf="registrationForm.controls['email'].valid" class="fa fa-check" aria-hidden="true"></i>
+        <div *ngIf="!registrationForm.controls['email'].valid && registrationForm.controls['email'].touched" class="alert alert-danger">Моля въведете валиден имейл</div>
+    </div>
+    <div class="form-group" [ngClass]="{'has-warning':!registrationForm.controls['password'].valid && registrationForm.controls['password'].touched}">
+        <input type="password" formControlName="password" placeholder="Парола*" name="password" [formControl]="registrationForm.controls['password']" #passwordField reverse="true" />
+        <i *ngIf="registrationForm.controls['password'].valid" class="fa fa-check" aria-hidden="true"></i>
+        <div *ngIf="registrationForm.controls['password'].hasError('required') && registrationForm.controls['password'].touched" class="alert alert-danger">Моля въведете парола</div>
+        <div *ngIf="!registrationForm.controls['password'].valid && !registrationForm.controls['password'].hasError('required') && registrationForm.controls['password'].touched" class="alert alert-danger">Моля въведете поне 8 символа</div>
+    </div>
+    <div class="form-group" [ngClass]="{'has-warning':!registrationForm.controls['passwordRepeat'].valid && registrationForm.controls['passwordRepeat'].touched}">
+        <input type="passwordRepeat" formControlName="passwordRepeat" placeholder="Повтори парола*" name="passwordRepeat" [formControl]="registrationForm.controls['passwordRepeat']" />
+        <i *ngIf="registrationForm.controls['passwordRepeat'].valid" class="fa fa-check" aria-hidden="true"></i>
+        <div *ngIf="!registrationForm.controls['passwordRepeat'].valid && registrationForm.controls['passwordRepeat'].touched" class="alert alert-danger">Паролите не съвпадат</div>
+    </div>
+    <div class="form-group" [ngClass]="{'has-warning':!registrationForm.controls['firstName'].valid && registrationForm.controls['firstName'].touched}">
+        <input type="text" formControlName="firstName" placeholder="Собствено име*" name="firstName" [formControl]="registrationForm.controls['firstName']" />
+        <i *ngIf="registrationForm.controls['firstName'].valid" class="fa fa-check" aria-hidden="true"></i>
+        <div *ngIf="!registrationForm.controls['firstName'].valid && registrationForm.controls['firstName'].touched" class="alert alert-danger">Моля въведете собстено име</div>
+    </div>
+    <div class="form-group" [ngClass]="{'has-warning':!registrationForm.controls['lastName'].valid && registrationForm.controls['lastName'].touched}">
+        <i *ngIf="registrationForm.controls['lastName'].valid" class="fa fa-check" aria-hidden="true"></i>
+        <input type="text" formControlName="lastName" placeholder="Фамилно име*" name="lastName" [formControl]="registrationForm.controls['lastName']" />
+        <div *ngIf="!registrationForm.controls['lastName'].valid && registrationForm.controls['lastName'].touched" class="alert alert-danger">Моля въведете фамилно име</div>
+    </div>
+    <div class="form-group">
+        <input type="tel" placeholder="Телефонен номер" name="phoneNumber" /><i class="fa fa-info" aria-hidden="true" placement="top" ngbTooltip="За да ви изпратим напомнящ SMS."></i>
+    </div>
+    <div>
+        <button [class.disabled]="!registrationForm.valid || loading" [disabled]="!registrationForm.valid || loading" type="submit"> Готово! </button>
+    </div>
+</form>

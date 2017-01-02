@@ -17,6 +17,10 @@ app-reservation-date-filter ngb-datepicker table {
     width: 100%;
 }
 
+app-map-view app-reservation-check-overlay h3 {
+    color: rgba(148, 221, 235, 0.89) !important;
+}
+
 app-reservation-date-filter ngb-datepicker button {
     border-radius: 0px !important;
     border: 1px solid rgba(148, 221, 235, 0.89) !important;
@@ -32,7 +36,8 @@ app-reservation-date-filter ngb-datepicker button:hover {
     background-color: rgba(148, 221, 235, 0.89) !important;
 }
 
-app-reservation-date-filter ngb-datepicker select {
+app-reservation-date-filter ngb-datepicker select,
+{
     border-radius: 0px !important;
     border: 1px solid rgba(148, 221, 235, 0.89) !important;
     font-size: 1rem !important;
@@ -40,11 +45,6 @@ app-reservation-date-filter ngb-datepicker select {
 
 app-reservation-date-filter ngb-datepicker .font-weight-bold {
     border-bottom: 1px solid rgba(148, 221, 235, 0.89) !important;
-}
-
-app-reservation-date-filter ngb-datepicker .bg-primary {
-    border-radius: 0px !important;
-    background-color: rgba(148, 221, 235, 0.89) !important;
 }
 
 app-venue-card ngb-datepicker {
@@ -68,6 +68,7 @@ app-venue-card ngb-datepicker .bg-primary {
     border-radius: 0px !important;
     color: rgba(148, 221, 235, 0.89) !important;
     background-color: #ffffff !important;
+    border: 1px solid rgba(148, 221, 235, 0.89);
 }
 
 app-venue-card ngb-datepicker .btn-secondary {
@@ -99,6 +100,45 @@ app-venue-card ngb-datepicker .hidden {
     display: none;
 }
 
+app-map-view #reservationCheckOverlay {
+    width: 95% !important;
+    margin-left: 2.5% !important;
+    background-color: #ffffff !important;
+    height: inherit !important;
+    position: relative !important;
+    height: 56.5% !important;
+}
+
+app-map-view app-reservation-check-overlay ngb-datepicker {
+    width: 100%;
+    border: none !important;
+}
+
+app-map-view app-reservation-check-overlay table {
+    width: 100%;
+}
+
+app-map-view app-reservation-check-overlay ngb-datepicker select {
+    border-radius: 0px !important;
+    border: 1px solid rgba(148, 221, 235, 0.89) !important;
+    font-size: 1rem !important;
+}
+
+app-map-view app-reservation-check-overlay ngb-datepicker .btn-secondary {
+    border-radius: 0px !important;
+    color: rgba(148, 221, 235, 0.89) !important;
+    background-color: #ffffff !important;
+    border: 1px solid rgba(148, 221, 235, 0.89);
+}
+
+app-map-view app-reservation-check-overlay ngb-datepicker .bg-primary {
+    color: #ffffff !important;
+    background-color: rgba(148, 221, 235, 0.89) !important;
+}
+
+
+/* Attendance Filter */
+
 app-venue-card app-people-attendance-filter>div {
     margin-bottom: 0px !important;
 }
@@ -125,7 +165,11 @@ app-venue-card app-people-attendance-filter h3 {
     }
 }
 
+app-map-view app-people-attendance-filter {
+    color: #ffffff;
+}
 
+app-people-attendance-filter
 /* Slider Custom */
 
 div.ui-slider {
@@ -142,6 +186,31 @@ span.ui-slider-handle:hover {
 
 div.ui-slider {
     margin-top: 1.0rem;
+}
+
+app-map-view app-people-attendance-filter span.slider-min-label {
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+app-map-view app-people-attendance-filter span.slider-max-label {
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+app-map-view app-people-attendance-filter {
+    color: rgba(148, 221, 235, 0.89);
+}
+
+app-map-view app-reservation-check-overlay #triggerContainer>a {
+    color: rgba(148, 221, 235, 0.89) !important;
+    border-color: rgba(148, 221, 235, 0.89) !important;
+}
+
+app-map-view app-reservation-check-overlay #triggerContainer>a:hover {
+    cursor: pointer;
+    background-color: rgba(148, 221, 235, 0.89) !important;
+    color: #ffffff !important;
 }
 
 
@@ -162,4 +231,33 @@ ngb-modal-window div.modal-content {
 
 div.card {
     border-radius: 0px !important;
+}
+
+
+/* Nav login form custom */
+
+nav app-login-form button {
+    color: #ffffff !important;
+    border-color: #ffffff !important;
+    margin-bottom: 0.4rem;
+}
+
+nav app-login-form button:hover {
+    color: #ffffff !important;
+    border-color: #ffffff !important;
+}
+
+nav app-login-form form {
+    margin-top: 0.5rem;
+}
+
+nav app-login-form form input {
+    width: 90% !important;
+}
+
+
+/* App auth app */
+
+app-authenticated-app app-search>div {
+    margin-right: 0.1rem !important;
 }
