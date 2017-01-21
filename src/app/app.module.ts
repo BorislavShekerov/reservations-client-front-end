@@ -31,6 +31,7 @@ import { LoginFormComponent } from './components/forms/login-form/login-form.com
 import { SignupFormComponent } from './components/forms/signup-form/signup-form.component';
 import { SideBarComponent } from './components/authenticated-app/side-bar/side-bar.component';
 import { MapViewComponent } from './components/map-view/map-view.component';
+import { AuthenticationOverlayComponent } from './components/overlays/authentication-overlay/authentication-overlay.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { MapViewComponent } from './components/map-view/map-view.component';
     LoginFormComponent,
     SignupFormComponent,
     SideBarComponent,
-    MapViewComponent
+    MapViewComponent,
+    AuthenticationOverlayComponent
   ],
   imports: [
     BrowserModule,
@@ -67,6 +69,6 @@ import { MapViewComponent } from './components/map-view/map-view.component';
   ],
   providers: [SearchService, AuthGuard, AuthenticationService],
   bootstrap: [AppComponent],
-  entryComponents: [ReservationOverlayComponent]
+  entryComponents: [AuthenticationOverlayComponent, ReservationOverlayComponent]
 })
 export class AppModule { }

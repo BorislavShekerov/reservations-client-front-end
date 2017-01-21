@@ -8,7 +8,13 @@ export class Table{
 @Injectable()
 export class ReservationService {
     private tables:Table[] = [{capacity:4},{capacity:4}];
+    private venueToReserveId: string;
+    private dateModel;
+    private peopleAttending: number;
 
+    dataForReservation(venueId: string, dateModel, peopleAttending: number){
+
+    }
     checkForTable(venueId: string, dateModel: NgbDateStruct, peopleAttending: number): Observable<Table[]>{
         return new Observable(observer => {
             observer.next(this.tables);

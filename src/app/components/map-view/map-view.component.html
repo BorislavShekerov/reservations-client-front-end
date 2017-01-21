@@ -1,19 +1,19 @@
 <div id="mapContainer" class="row">
-    <div *ngIf="isVenueSelected" class="col-xs-12 col-lg-3">
+    <div *ngIf="isVenueSelected" class="col-xs-12 col-md-6 col-lg-3">
+        <span *ngIf="!freeTablesCheckTriggered" (click)="isVenueSelected = false"><i class="fa fa-times" aria-hidden="true"></i></span>
         <div>
-            <div id="venueSelectedImageContainer">
+            <div *ngIf="!freeTablesCheckTriggered" id="venueSelectedImageContainer">
                 <h3> {{selectedVenue.name}} </h3>
                 <img [src]="selectedVenue.mainPicUrl" alt="Club image" />
             </div>
             <app-reservation-check-overlay *ngIf="!freeTablesCheckTriggered" [peopleAttending]="peopleAttending" [dateModel]="dateModel" (freeTablesCheckEventEmitter)="triggerFreeTablesCheck($event)" [venue]="selectedVenue"></app-reservation-check-overlay>
-            <app-reservation-initiation-overlay *ngIf="freeTablesCheckTriggered" [checkTriggeredFromOverlay]="checkTriggeredFromOverlay" [peopleAttending]="peopleAttending" [dateModel]="dateModel" [venueId]="venue.id" (backTriggerEventEmitter)="resetReservationCriteria()">
+            <app-reservation-initiation-overlay *ngIf="freeTablesCheckTriggered" [checkTriggeredFromOverlay]="true" [peopleAttending]="peopleAttending" [dateModel]="dateModel" [venueId]="selectedVenue.id" (backTriggerEventEmitter)="resetReservationTrigger()">
             </app-reservation-initiation-overlay>
         </div>
     </div>
-    <div [class.col-lg-12]="!isVenueSelected" [class.col-lg-9]="isVenueSelected">
-        <sebm-google-map [latitude]="lat" [longitude]="lng" [zoom]="15">
-            <!--<sebm-google-map-marker [latitude]="lat" [longitude]="lng"></sebm-google-map-marker>-->
-            <sebm-google-map-marker *ngFor="let venue of venuesToDisplay" [latitude]="venue.latitude" [longitude]="venue.longitude" [label]="M" (markerClick)="venueClicked(venue)">
+    <div class="col-sm-12" [class.col-md-6]="isVenueSelected" [class.col-lg-8]="isVenueSelected" [class.col-xl-9]="isVenueSelected">
+        <sebm-google-map [latitude]="lat " [longitude]="lng " [zoom]="15 ">
+            <sebm-google-map-marker *ngFor="let venue of venuesToDisplay " [latitude]="venue.latitude " [longitude]="venue.longitude " [label]="M " (markerClick)="venueClicked(venue) ">
                 <sebm-google-map-info-window>
                     <div>
                         {{venue.name}}

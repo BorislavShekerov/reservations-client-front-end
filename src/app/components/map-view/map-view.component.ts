@@ -45,8 +45,13 @@ export class MapViewComponent implements OnInit {
     this.dateModel = criteriaToCheckFor.dateModel;
     this.peopleAttending = criteriaToCheckFor.peopleAttending;
   }
+  
   venueClicked(venue){
     this.selectedVenue = venue;
     this.isVenueSelected = true;
+  }
+
+  resetReservationTrigger(){
+    this.freeTablesCheckTriggered = false;
   }
 }

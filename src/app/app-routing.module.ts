@@ -31,7 +31,26 @@ const routes: Routes = [
       { path: 'listview/:queryString/date/:date/peopleAttending/:peopleAttending', component: ListViewComponent },
       { path: 'listview/type/:type/date/:date/peopleAttending/:peopleAttending', component: ListViewComponent },
       { path: 'listview/:queryString/type/:type/date/:date/peopleAttending/:peopleAttending', component: ListViewComponent },
-      { path: 'mapview', component: MapViewComponent }
+      { path: 'mapview', component: MapViewComponent },
+      { path: 'mapview/:queryString', component: MapViewComponent },
+
+      { path: 'mapview/type/:type', component: MapViewComponent },
+      { path: 'mapview/:queryString/type/:type', component: MapViewComponent },
+
+      { path: 'mapview/date/:date', component: MapViewComponent },
+      { path: 'mapview/:queryString/date/:date', component: MapViewComponent },
+      { path: 'mapview/type/:type/date/:date', component: MapViewComponent },
+      { path: 'mapview/:queryString/type/:type/date/:date', component: MapViewComponent },
+
+      { path: 'mapview/peopleAttending/:peopleAttending', component: MapViewComponent },
+      { path: 'mapview/:queryString/peopleAttending/:peopleAttending', component: MapViewComponent },
+      { path: 'mapview/type/:type/peopleAttending/:peopleAttending', component: MapViewComponent },
+      { path: 'mapview/:queryString/type/:type/peopleAttending/:peopleAttending', component: MapViewComponent },
+      { path: 'mapview/date/:date/peopleAttending/:peopleAttending', component: MapViewComponent },
+      { path: 'mapview/:queryString/date/:date/peopleAttending/:peopleAttending', component: MapViewComponent },
+      { path: 'mapview/type/:type/date/:date/peopleAttending/:peopleAttending', component: MapViewComponent },
+      { path: 'mapview/:queryString/type/:type/date/:date/peopleAttending/:peopleAttending', component: MapViewComponent },
+
     ]
   },
   {

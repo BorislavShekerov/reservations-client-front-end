@@ -141,6 +141,8 @@ app-map-view app-reservation-check-overlay ngb-datepicker .bg-primary {
 
 app-venue-card app-people-attendance-filter>div {
     margin-bottom: 0px !important;
+    width: 90%;
+    margin-left: 5%;
 }
 
 app-venue-card app-people-attendance-filter span.ui-slider-handle {
@@ -169,7 +171,14 @@ app-map-view app-people-attendance-filter {
     color: #ffffff;
 }
 
-app-people-attendance-filter
+
+/* reservationInitiation component custom*/
+
+app-map-view #reservationInitiationOverlay>div {
+    margin-top: 60% !important;
+}
+
+
 /* Slider Custom */
 
 div.ui-slider {

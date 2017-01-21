@@ -3,6 +3,7 @@ import { ReservationService } from '../../../../services/reservation.service';
 import { Table } from '../../../../services/reservation.service';
 import { AuthenticationService } from '../../../../services/user-authentication.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AuthenticationOverlayComponent } from '../../../overlays/authentication-overlay/authentication-overlay.component';
 import { ReservationOverlayComponent } from '../../../overlays/reservation-overlay/reservation-overlay.component';
 
 @Component({
@@ -38,6 +39,11 @@ export class ReservationInitiationOverlayComponent implements OnInit {
   }
 
   reserveTable() {
-    this.modalService.open(ReservationOverlayComponent);
+    if (!this.authenticationService.isUserAuthenticated()) {
+      this.modalService.open(AuthenticationOverlayComponent);
+    }else{
+      this.reservationService.dataForReservation(this.venueId, this.dateModel, this.peopleAttending);
+      this.modalService.open(ReservationOverlayComponent)
+    }
   }
 }

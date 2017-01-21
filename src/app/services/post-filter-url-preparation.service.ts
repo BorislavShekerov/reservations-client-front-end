@@ -14,7 +14,7 @@ class UrlPartition {
 @Injectable()
 export class PostFilterUrlPreparator {
 
-    prepareNewUrl(venueTypesFilters: VenueFilter[], dateModel: NgbDateStruct, searchInputQuery: string, peopleGoing: number): string {
+    prepareNewUrl(viewChosen:String, venueTypesFilters: VenueFilter[], dateModel: NgbDateStruct, searchInputQuery: string, peopleGoing: number): string {
         let newUrlPartitions: UrlPartition[] = [];
         let venueFiltersSelected: VenueFilter[] = venueTypesFilters.filter(venueFilter => venueFilter.isFiltered);
 
@@ -31,7 +31,7 @@ export class PostFilterUrlPreparator {
             newUrlPartitions.push({ constantPart: "/peopleAttending/", variablePart: peopleGoing.toString() });
         }
 
-        let newUrlString = searchInputQuery;
+        let newUrlString = "/search/" + viewChosen + "/" + searchInputQuery;
 
         newUrlPartitions.forEach(newUrlPartition => newUrlString += newUrlPartition.constantPart + newUrlPartition.variablePart);
 

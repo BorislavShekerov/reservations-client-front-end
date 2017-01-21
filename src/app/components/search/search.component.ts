@@ -114,7 +114,7 @@ export class SearchComponent implements OnInit {
     this.venueTypeFilters.filter(venueTypeFilter => urlTypeFilterContents.indexOf(venueTypeFilter.type) > -1).forEach(venueTypeFilter => venueTypeFilter.isFiltered = true);
   }
   filterSearch() {
-    let newUrl: string = this.postFilterUrlPreparator.prepareNewUrl(this.venueTypeFilters, this.dateModel, this.searchInputQuery, this.peopleAttendingModel);
+    let newUrl: string = this.postFilterUrlPreparator.prepareNewUrl(this.chosenView, this.venueTypeFilters, this.dateModel, this.searchInputQuery, this.peopleAttendingModel);
     this.router.navigate([newUrl], { relativeTo: this.route });
   }
 
