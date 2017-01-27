@@ -1,0 +1,22 @@
+$mainColor: rgba(158, 223, 236, 0.93);
+div {
+    &.modal-body {
+        text-align: center;
+        textarea {
+            border-color: $mainColor;
+        }
+        button {
+            display: block;
+            float: right;
+            margin-right: 6.4rem;
+            margin-top: -0.5rem;
+            color: $mainColor;
+            background-color: #ffffff;
+            border: 1px solid $mainColor;
+            border-top: 0px;
+        }
+    }
+    #enquiryInputContainer {
+        text-align: center;
+    }
+}

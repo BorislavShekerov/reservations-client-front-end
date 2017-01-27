@@ -5,8 +5,7 @@ import { AuthenticationService } from '../../../services/user-authentication.ser
 @Component({
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',
-  styleUrls: ['./login-form.component.scss'],
-  providers: [AuthenticationService]
+  styleUrls: ['./login-form.component.scss']
 })
 export class LoginFormComponent {
   private loginForm: FormGroup;
@@ -27,21 +26,17 @@ export class LoginFormComponent {
   submitLoginForm($form) {
     this.loading = true;
 
-    setTimeout(() => {
-      this.authenticationService.authorizeUser($form.email, $form.password).subscribe(loginValid => {
+      this.authenticationService.authenticateUser($form.email, $form.password).subscribe(loginValid => {
         if (!loginValid) {
           this.invalidLogin = false;
           this.loading = false;
           this.loginOutcome.next(false);
 
         } else {
-          // this.modal.close('Authentication success');
-          // this.router.navigate(['app/' + this.location.path()]);
           this.loading = false;
           this.loginOutcome.next(true);
         }
       });
-    }, 1500);
 
   }
 }

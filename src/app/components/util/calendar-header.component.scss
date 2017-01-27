@@ -1,0 +1,21 @@
+$mainColor: rgba(158, 223, 236, 0.93);
+#calendarHeader {
+    div {
+        &.btn {
+            border: 1px solid $mainColor;
+            color: $mainColor;
+            border-radius: 0px;
+            background-color: #fff;
+            font-size: 1.2rem;
+        }
+        &.nextContainer {
+            text-align: right;
+        }
+        &.previousContainer {
+            text-align: left;
+        }
+    }
+    #monthNameContainer {
+        text-align: center;
+    }
+}

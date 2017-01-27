@@ -11,6 +11,7 @@ import { I18n } from '../../services/custom-language-datepicker.service';
 import { CustomDatepickerI18n } from '../../services/custom-language-datepicker.service';
 import { VenueFilter } from '../search-filters/venue-type-filter/venue-type-filter.component';
 import { slideInDownAnimation } from '../../animations/slide-in-down.animation';
+import { UserStateChangeService } from '../../services/user-state-change.service';
 
 class UrlParam {
   name: string;
@@ -45,7 +46,7 @@ export class SearchComponent implements OnInit {
 
   @ViewChild('searchInputField') searchInputFiled: ElementRef;
 
-  constructor(private renderer: Renderer, private router: Router, private route: ActivatedRoute, private location: Location, private postFilterUrlPreparator: PostFilterUrlPreparator, private urlToFilterDecoder: UrlToFilterDecoder) {
+  constructor(private renderer: Renderer, private router: Router, private route: ActivatedRoute, private location: Location, private postFilterUrlPreparator: PostFilterUrlPreparator, private urlToFilterDecoder: UrlToFilterDecoder, private userStateChangeService: UserStateChangeService) {
     this.urlContents = location.path().split("/");
   }
 
@@ -53,6 +54,7 @@ export class SearchComponent implements OnInit {
     this.renderer.invokeElementMethod(this.searchInputFiled.nativeElement,
       'focus');
 
+    this.registerStateChangeListener();
     this.initializeFilterFields();
     this.addSearchTermsSubscriber();
   }
@@ -137,5 +139,16 @@ export class SearchComponent implements OnInit {
     if (!this.filtersExpanded) {
       this.showFilterButton = true;
     }
+  }
+
+  registerStateChangeListener() {
+    this.userStateChangeService.stateChangesStream
+      .subscribe(newState => {
+        if (newState == "reservations") {
+          this.router.navigate([`/${newState}`]);
+        } else if (newState == "search") {
+          this.router.navigate([`/search/listview`]);
+        }
+      });
   }
 }

@@ -1,21 +1,40 @@
 $mainColor: rgba(148, 221, 235, 0.89);
 nav {
+    margin: 0px;
+    padding: 0px;
+    height: 60px;
     background-color: $mainColor;
     h1 {
         color: #ffffff;
-        margin-left: 1rem;
+        margin-left: 2rem;
+        margin-top: 0.5rem;
+        font-size: 1.5rem;
     }
-    a.btn-own {
-        border: 1px solid #ffffff;
-        padding: 0.2rem 0.5rem;
-        color: #ffffff;
-        display: inline-block;
-        float: right;
-        &:hover {
-            color: $mainColor;
-            cursor: pointer;
-            background-color: #ffffff;
+    div {
+        height: 100%;
+        font-size: 1.5rem;
+    }
+    a {
+        text-decoration: none;
+        &.btn-own {
+            padding: 0.2rem 1.1rem;
+            color: #ffffff;
+            display: inline-block;
+            float: right;
+            height: 100%;
+            border-left: 1px solid #ffffff;
+            vertical-align: middle;
+            padding-top: 0.6rem;
+            &:hover,
+            &.active {
+                color: $mainColor;
+                cursor: pointer;
+                background-color: #ffffff;
+            }
         }
+    }
+    #buttonContainer {
+        margin-left: 4rem;
     }
     app-login-form {
         position: absolute;
@@ -23,7 +42,6 @@ nav {
         width: 19%;
         background-color: rgba(148, 221, 235, 0.89);
         top: 100%;
-        border-left: 1px solid rgba(0, 0, 0, 0.16);
-        border-bottom: 1px solid rgba(0, 0, 0, 0.16);
+        border: 1px solid #ffffff;
     }
 }

@@ -1,60 +1,132 @@
-$mainColor: rgba(148, 221, 235, 0.89);
-form {
-    text-align: center;
-    input {
-        margin-bottom: 1rem;
-        display: inline-block;
-        width: 80%;
-        border-top: none;
-        border-left: none;
-        border-right: none;
-        &[type="tel"] {
-            position: relative;
-        }
-        &:focus {
-            outline: none;
-        }
-        &:-webkit-autofill {
-            background-color: #ffffff !important;
-        }
-    }
-    i {
-        position: absolute;
-        top: 15%;
-        right: 11%;
-        color: $mainColor;
-    }
-    div {
-        &.form-group {
-            position: relative;
-        }
-        &.alert {
+    $mainColor: rgba(148, 221, 235, 0.89);
+    form {
+        text-align: center;
+        input {
+            margin-bottom: 1rem;
+            display: inline-block;
             width: 80%;
-            margin-left: 10%;
-            font-size: 1.2rem;
-            border-radius: 0px;
+            border-top: none;
+            border-left: none;
+            border-right: none;
+            &[type="tel"] {
+                position: relative;
+            }
+            &:focus {
+                outline: none;
+            }
+            &:-webkit-autofill {
+                background-color: #ffffff !important;
+            }
         }
-    }
-    button {
-        padding: 0.2rem 1.5rem;
-        border: 1px solid $mainColor;
-        color: $mainColor;
-        background-color: inherit;
-        &:hover {
-            background-color: $mainColor;
-            color: #ffffff;
-            border: 1px solid #ffffff;
-            cursor: pointer;
+        i {
+            position: absolute;
+            top: 15%;
+            right: 11%;
+            color: $mainColor;
         }
-        &.disabled {
-            color: rgba(148, 221, 235, 0.35);
-            border-color: rgba(148, 221, 235, 0.35);
+        div {
+            &.form-group {
+                position: relative;
+            }
+            &.alert {
+                width: 80%;
+                margin-left: 10%;
+                font-size: 1.2rem;
+                border-radius: 0px;
+            }
+        }
+        button {
+            padding: 0.2rem 1.5rem;
+            border: 1px solid $mainColor;
+            color: $mainColor;
+            background-color: inherit;
             &:hover {
+                background-color: $mainColor;
+                color: #ffffff;
+                border: 1px solid #ffffff;
+                cursor: pointer;
+            }
+            &.disabled {
                 color: rgba(148, 221, 235, 0.35);
                 border-color: rgba(148, 221, 235, 0.35);
-                background-color: inherit;
-                cursor: default;
+                &:hover {
+                    color: rgba(148, 221, 235, 0.35);
+                    border-color: rgba(148, 221, 235, 0.35);
+                    background-color: inherit;
+                    cursor: default;
+                }
+            }
+        }
+        .loader {
+            display: inline-block;
+            font-size: 10px;
+            margin-left: 0.3rem;
+            margin-top: 0.2rem;
+            text-indent: -9999em;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            background: $mainColor;
+            background: -moz-linear-gradient(left, $mainColor 10%, rgba(255, 255, 255, 0) 42%);
+            background: -webkit-linear-gradient(left, $mainColor 10%, rgba(255, 255, 255, 0) 42%);
+            background: -o-linear-gradient(left, $mainColor 10%, rgba(255, 255, 255, 0) 42%);
+            background: -ms-linear-gradient(left, $mainColor 10%, rgba(255, 255, 255, 0) 42%);
+            background: linear-gradient(to right, $mainColor 10%, rgba(255, 255, 255, 0) 42%);
+            position: relative;
+            -webkit-animation: load3 1.4s infinite linear;
+            animation: load3 1.4s infinite linear;
+            -webkit-transform: translateZ(0);
+            -ms-transform: translateZ(0);
+            transform: translateZ(0);
+            &:before {
+                width: 50%;
+                height: 50%;
+                background: $mainColor;
+                border-radius: 100% 0 0 0;
+                position: absolute;
+                top: 0;
+                left: 0;
+                content: '';
+            }
+            &:after {
+                background: #ffffff;
+                width: 75%;
+                height: 75%;
+                border-radius: 50%;
+                content: '';
+                margin: auto;
+                position: absolute;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+            }
+            @-webkit-keyframes load3 {
+                0% {
+                    -webkit-transform: rotate(0deg);
+                    transform: rotate(0deg);
+                }
+                100% {
+                    -webkit-transform: rotate(360deg);
+                    transform: rotate(360deg);
+                }
+            }
+            @keyframes load3 {
+                0% {
+                    -webkit-transform: rotate(0deg);
+                    transform: rotate(0deg);
+                }
+                100% {
+                    -webkit-transform: rotate(360deg);
+                    transform: rotate(360deg);
+                }
             }
         }
     }
-}
+    
+    #activateAccountBanner {
+        background-color: aquamarine;
+        padding: 1rem;
+        border: 2px solid;
+        border-radius: 3px;
+    }

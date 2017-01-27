@@ -1,0 +1,19 @@
+<div id="calendarHeader" class="row text-center">
+    <div class="col-md-4">
+        <div class="previousContainer">
+            <div class="btn" (click)="decrement()">
+                <i class="fa fa-angle-double-left" aria-hidden="true"></i> Предишен
+            </div>
+        </div>
+    </div>
+    <div id="monthNameContainer" class="col-md-4">
+        <h3>{{ viewDate | calendarDate:('monthViewTitle'):locale }}</h3>
+    </div>
+    <div class="col-md-4">
+        <div class="nextContainer">
+            <div class="btn" (click)="increment()">
+                Следващ <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,12 @@
+<div id="reservations">
+    <div *ngIf="showLoadingSpinner" class="row">
+        <div class="dizzy-gillespie"></div>
+    </div>
+    <div *ngIf="!showLoadingSpinner" class="offset-lg-1 col-lg-10">
+        <mwl-calendar-header [(view)]="view" [locale]="locale" [(viewDate)]="viewDate">
+        </mwl-calendar-header>
+
+        <mwl-calendar-month-view [viewDate]="viewDate" [activeDayIsOpen]="activeDayIsOpen" [events]="(events | async) || []" (dayClicked)="dayClicked($event.day)" [locale]="locale" (eventClicked)="eventClicked($event)">
+        </mwl-calendar-month-view>
+    </div>
+</div>

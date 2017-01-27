@@ -15,7 +15,7 @@ export class SignupFormComponent implements OnInit {
   private invalidRegistrationEmailTaken: boolean = false;
   private successfulRegistration: boolean = false;
   @Output() registrationOutcome: EventEmitter<boolean> = new EventEmitter();
-  
+
   @ViewChild('passwordField') passwordField: ElementRef;
 
   constructor(private authenticationService: AuthenticationService, fb: FormBuilder) {
@@ -48,21 +48,20 @@ export class SignupFormComponent implements OnInit {
   submitRegistrationForm(userDetails) {
     this.loading = true;
 
-    setTimeout(() => {
-      this.authenticationService.registerUser(userDetails).subscribe((registrationResponse: UserRegistrationResponse) => {
-        if (!registrationResponse.isSuccessful) {
-          if (registrationResponse.failureReason == EMAIL_TAKEN) {
-            this.invalidRegistrationEmailTaken = true;
-          } else {
-            this.invalidRegistrationError = true;
-          }
+    this.authenticationService.registerUser(userDetails).subscribe((registrationResponse: UserRegistrationResponse) => {
+      if (!registrationResponse.isSuccessful) {
+        if (registrationResponse.failureReason == EMAIL_TAKEN) {
+          this.invalidRegistrationEmailTaken = true;
         } else {
-          this.registrationOutcome.next(true);
+          this.invalidRegistrationError = true;
         }
+      } else {
+        this.successfulRegistration = true;
+        this.registrationOutcome.next(true);
+      }
 
-        this.loading = false;
-      });
-    }, 1500);
+      this.loading = false;
+    });
   }
 
 }

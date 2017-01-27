@@ -1,0 +1,14 @@
+{
+    "/venue-api": {
+        "target": "http://localhost:8085",
+        "secure": false
+    },
+    "/api": {
+        "target": "http://localhost:8085",
+        "secure": false
+    },
+    "/reservations-api": {
+        "target": "http://localhost:8085",
+        "secure": false
+    }
+}

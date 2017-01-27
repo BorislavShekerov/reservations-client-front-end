@@ -1,0 +1,19 @@
+<div class="modal-header">
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    <h4 class="modal-title">Данни за резервация</h4>
+</div>
+<div class="modal-body row">
+    <h3>{{reservation.venue.name}}</h3>
+    <p> Брой на присъстващите: <span>{{reservation.peopleAttending}}</span> </p>
+    <div class="offset-lg-1 col-lg-10">
+        <h3>Изпрати запитване:</h3>
+        <div id="enquiryInputContainer">
+            <div>
+                <textarea pInputTextarea autoResize="autoResize" [(ngModel)]="property"></textarea>
+            </div>
+            <button> Изпрати <i class="fa fa-paper-plane" aria-hidden="true"></i> </button>
+        </div>
+    </div>
+</div>

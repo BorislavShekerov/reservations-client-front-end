@@ -29,16 +29,12 @@ export class ListViewComponent implements OnInit {
       this.peopleAttendingSearchCriteria = params['peopleGoing'];
 
       this.showLoadingSpinner = true;
-      setTimeout(() => {
-        this.showLoadingSpinner = false;
 
-        this.searchService.findVenues(queryString)
-          .subscribe(venues => {
-            console.log(venues);
-            this.venuesToDisplay = venues;
-          });
-      }, 1500);
-
+      this.searchService.findVenues(queryString)
+        .subscribe(venues => {
+          this.showLoadingSpinner = false;
+          this.venuesToDisplay = venues;
+        });
     });
 
   }

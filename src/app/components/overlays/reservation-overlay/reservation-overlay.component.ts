@@ -13,6 +13,7 @@ export class ReservationOverlayComponent implements OnInit {
   }
 
   ngOnInit() {
+    
   }
 
 }

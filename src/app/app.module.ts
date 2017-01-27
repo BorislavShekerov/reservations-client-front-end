@@ -6,6 +6,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import './rxjs-extensions';
 import { SliderModule } from 'primeng/primeng';
 import { AgmCoreModule } from 'angular2-google-maps/core';
+import { CalendarModule } from 'angular-calendar';
+import { InputTextareaModule } from 'primeng/primeng';
 
 import { AppComponent } from './app.component';
 import { HeaderNavComponent } from './components/header-nav/header-nav.component';
@@ -18,6 +20,8 @@ import { PlaceCardComponent } from './components/venue-card/venue-card.component
 import { SearchService } from './services/search.service';
 import { AuthGuard } from './services/auth-guard.service';
 import { AuthenticationService } from './services/user-authentication.service';
+import { UserStateChangeService } from './services/user-state-change.service';
+import { UserTokenRequestHandler } from './services/user-token-request-handler.service';
 
 import { VenueTypeFilterComponent } from './components/search-filters/venue-type-filter/venue-type-filter.component';
 import { ReservationDateFilterComponent } from './components/search-filters/reservation-date-filter/reservation-date-filter.component';
@@ -32,6 +36,9 @@ import { SignupFormComponent } from './components/forms/signup-form/signup-form.
 import { SideBarComponent } from './components/authenticated-app/side-bar/side-bar.component';
 import { MapViewComponent } from './components/map-view/map-view.component';
 import { AuthenticationOverlayComponent } from './components/overlays/authentication-overlay/authentication-overlay.component';
+import { ReservationsComponent } from './components/reservations/reservations.component';
+import { CalendarHeaderComponent } from './components/util/calendar-header.component';
+import { ReservationDetailsOverlayComponent } from './components/overlays/reservation-details-overlay/reservation-details-overlay.component'
 
 @NgModule({
   declarations: [
@@ -53,7 +60,10 @@ import { AuthenticationOverlayComponent } from './components/overlays/authentica
     SignupFormComponent,
     SideBarComponent,
     MapViewComponent,
-    AuthenticationOverlayComponent
+    AuthenticationOverlayComponent,
+    ReservationsComponent,
+    CalendarHeaderComponent,
+    ReservationDetailsOverlayComponent
   ],
   imports: [
     BrowserModule,
@@ -63,12 +73,14 @@ import { AuthenticationOverlayComponent } from './components/overlays/authentica
     NgbModule.forRoot(),
     SliderModule,
     ReactiveFormsModule,
+    InputTextareaModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAyhUakPzZpZZir-IkLWLfFOLhvQvbNSkM'
-    })
+    }),
+    CalendarModule.forRoot()
   ],
-  providers: [SearchService, AuthGuard, AuthenticationService],
+  providers: [SearchService, AuthGuard, AuthenticationService, UserStateChangeService, UserTokenRequestHandler],
   bootstrap: [AppComponent],
-  entryComponents: [AuthenticationOverlayComponent, ReservationOverlayComponent]
+  entryComponents: [AuthenticationOverlayComponent, ReservationOverlayComponent, ReservationDetailsOverlayComponent]
 })
 export class AppModule { }

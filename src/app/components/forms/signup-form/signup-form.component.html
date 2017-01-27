@@ -1,4 +1,7 @@
-<form novalidate [formGroup]="registrationForm" (ngSubmit)="submitRegistrationForm(registrationForm.value)">
+<div *ngIf="successfulRegistration" id="activateAccountBanner">
+    <p> <b>Регистрацията бе успешна!</b> Изпратихме линк за активация на имейла ви , моля активирайте акаунта си.</p>
+</div>
+<form *ngIf="!successfulRegistration" novalidate [formGroup]="registrationForm" (ngSubmit)="submitRegistrationForm(registrationForm.value)">
     <div class="form-group" [ngClass]="{'has-warning':!registrationForm.controls['email'].valid && registrationForm.controls['email'].touched}">
         <input type="email" formControlName="email" placeholder="Имейл*" name="email" [formControl]="registrationForm.controls['email']" />
         <i *ngIf="registrationForm.controls['email'].valid" class="fa fa-check" aria-hidden="true"></i>
@@ -29,6 +32,7 @@
         <input type="tel" placeholder="Телефонен номер" name="phoneNumber" /><i class="fa fa-info" aria-hidden="true" placement="top" ngbTooltip="За да ви изпратим напомнящ SMS."></i>
     </div>
     <div>
-        <button [class.disabled]="!registrationForm.valid || loading" [disabled]="!registrationForm.valid || loading" type="submit"> Готово! </button>
+        <button [class.disabled]="!registrationForm.valid || loading" [disabled]="!registrationForm.valid || loading" type="submit"> <span *ngIf="!loading" >Готово!</span> <span *ngIf="loading"> Регистрираме ви </span> <div *ngIf="loading"  class="loader"></div>
+        </button>
     </div>
 </form>
