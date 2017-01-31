@@ -33,7 +33,7 @@ export class PostFilterUrlPreparator {
 
         let newUrlString = "/search/" + viewChosen + "/" + searchInputQuery;
 
-        newUrlPartitions.forEach(newUrlPartition => newUrlString += newUrlPartition.constantPart + newUrlPartition.variablePart);
+        //newUrlPartitions.forEach(newUrlPartition => newUrlString += newUrlPartition.constantPart + newUrlPartition.variablePart);
 
         return newUrlString;
     }

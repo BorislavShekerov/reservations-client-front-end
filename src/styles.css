@@ -265,8 +265,10 @@ nav app-login-form form input {
 }
 
 
-/* App auth app */
+/* Reservations custom calendar */
 
-app-authenticated-app app-search>div {
-    margin-right: 0.1rem !important;
+#reservations .cal-month-view .cal-days,
+#reservations .cal-cell-row,
+#reservations .cal-month-view .cal-day-cell:not(:last-child) {
+    border-color: rgba(148, 221, 235, 0.89);
 }

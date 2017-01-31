@@ -66,7 +66,7 @@ export class SearchComponent implements OnInit {
     this.searchTerms
       .debounceTime(300)
       .distinctUntilChanged()
-      .subscribe(searchTerm => this.filterSearch());
+      .subscribe(searchTerm => this.filterSearch(searchTerm));
   }
 
   isDisplayedViewMap() {
@@ -115,24 +115,25 @@ export class SearchComponent implements OnInit {
 
     this.venueTypeFilters.filter(venueTypeFilter => urlTypeFilterContents.indexOf(venueTypeFilter.type) > -1).forEach(venueTypeFilter => venueTypeFilter.isFiltered = true);
   }
-  filterSearch() {
-    let newUrl: string = this.postFilterUrlPreparator.prepareNewUrl(this.chosenView, this.venueTypeFilters, this.dateModel, this.searchInputQuery, this.peopleAttendingModel);
+
+  filterSearch(searchQuery: string) {
+    let newUrl: string = this.postFilterUrlPreparator.prepareNewUrl(this.chosenView, this.venueTypeFilters, this.dateModel, searchQuery, this.peopleAttendingModel);
     this.router.navigate([newUrl], { relativeTo: this.route });
   }
 
   handleDateModelUpdate(updatedDateModel: NgbDateStruct) {
     this.dateModel = updatedDateModel;
-    this.filterSearch();
+    this.filterSearch(this.searchInputQuery);
   }
 
   handleVenueModelUpdate(updatedVenueFilters: VenueFilter[]) {
     this.venueTypeFilters = updatedVenueFilters;
-    this.filterSearch();
+    this.filterSearch(this.searchInputQuery);
   }
 
   handlePeopleGoingModelUpdate(updatedPeopleGoingModel: number) {
     this.peopleAttendingModel = updatedPeopleGoingModel;
-    this.filterSearch();
+    this.filterSearch(this.searchInputQuery);
   }
 
   displayFilterButton() {

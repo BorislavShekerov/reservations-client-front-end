@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { AuthenticationService } from '../../../services/user-authentication.service';
 
 @Component({
   selector: 'app-authentication-overlay',
@@ -10,7 +11,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class AuthenticationOverlayComponent implements OnInit {
 
-  constructor(private modal: NgbActiveModal, private location: Location, private router: Router) {
+  constructor(private modal: NgbActiveModal, private location: Location, private router: Router, private authenticationService: AuthenticationService) {
   }
 
   ngOnInit() {
@@ -19,7 +20,7 @@ export class AuthenticationOverlayComponent implements OnInit {
   handleLoginOutcome(loginSuccess: boolean) {
     if (loginSuccess) {
       this.modal.close('Authentication success');
-      this.router.navigate(['app/' + this.location.path()]);
+      this.authenticationService.userAuthenticatedEventStream.next(true);
     }
   }
 

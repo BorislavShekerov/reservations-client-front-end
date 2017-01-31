@@ -7,7 +7,7 @@
                 <img [src]="selectedVenue.mainPicUrl" alt="Club image" />
             </div>
             <app-reservation-check-overlay *ngIf="!freeTablesCheckTriggered" [peopleAttending]="peopleAttending" [dateModel]="dateModel" (freeTablesCheckEventEmitter)="triggerFreeTablesCheck($event)" [venue]="selectedVenue"></app-reservation-check-overlay>
-            <app-reservation-initiation-overlay *ngIf="freeTablesCheckTriggered" [checkTriggeredFromOverlay]="true" [peopleAttending]="peopleAttending" [dateModel]="dateModel" [venueId]="selectedVenue.id" (backTriggerEventEmitter)="resetReservationTrigger()">
+            <app-reservation-initiation-overlay *ngIf="freeTablesCheckTriggered" [checkTriggeredFromOverlay]="true" [peopleAttending]="peopleAttending" [dateModel]="dateModel" [venue]="selectedVenue" (backTriggerEventEmitter)="resetReservationTrigger()">
             </app-reservation-initiation-overlay>
         </div>
     </div>

@@ -18,8 +18,7 @@ export class AuthenticationService implements CanActivate {
     private signUpUrl: string = "/api/auth/signUp";
     private authenticationUrl: string = "/api/auth/login";
     private tokenRefreshUrl: string = "/api/auth/token";
-
-    private userAuthenticatedEventStream = new Subject<boolean>();
+    userAuthenticatedEventStream = new Subject<boolean>();
 
     constructor(private http: Http, private router: Router, private userTokenRequestHandler: UserTokenRequestHandler) { }
 
@@ -89,5 +88,12 @@ export class AuthenticationService implements CanActivate {
         }
 
         return Observable.throw(errorCode);
+    }
+
+    logUserOut(){
+        localStorage.removeItem('currentUser');
+        localStorage.removeItem('currentUserTokens');
+        
+        this.userAuthenticatedEventStream.next(false);
     }
 }

@@ -10,20 +10,18 @@ import { ReservationEvent } from '../components/reservations/reservations.compon
 import { COLORS } from '../model/colors';
 import { Subject } from 'rxjs/Subject';
 import { UserStateChangeService } from './user-state-change.service';
+import { Venue } from '../model/venue';
+import { Table } from '../model/table';
 
-export class Table {
-    capacity: number;
-}
 @Injectable()
 export class ReservationService {
 
-    private tables: Table[] = [{ capacity: 4 }, { capacity: 4 }];
     private venueToReserveId: string;
     private dateModel;
     private peopleAttending: number;
     reservationsRefreshTrigger = new Subject<boolean>();
 
-    constructor(private http: Http, private authenticationService: AuthenticationService, private userTokenRequestHandler: UserTokenRequestHandler, private userStateChangeService:UserStateChangeService) { }
+    constructor(private http: Http, private authenticationService: AuthenticationService, private userTokenRequestHandler: UserTokenRequestHandler, private userStateChangeService: UserStateChangeService) { }
 
     dataForReservation(venueId: string, dateModel, peopleAttending: number) {
         this.venueToReserveId = venueId;
@@ -32,7 +30,6 @@ export class ReservationService {
     }
 
     getReservationsForUser(): Observable<ReservationEvent[]> {
-        this.authenticationService;
         return this.http
             .get(RESERVATIONS_URL, this.userTokenRequestHandler.constructRequestHeaders(true))
             .map(res => {
@@ -45,11 +42,20 @@ export class ReservationService {
                     return {
                         title: reservation.venue.name,
                         start: new Date('' + reservationDate[0] + '-' + reservationDate[1] + '-' + reservationDate[2]),
-                        color: COLORS.yellow,
+                        color: COLORS.mainColor,
                         reservation
                     };
                 });
             }).catch(this.handleError.bind(this));
+    }
+
+    reserveTable(venue: Venue, dateModel: NgbDateStruct, peopleAttending: number, tableToReserve: Table): Observable<boolean> {
+        let reservationDate = this.stringifyDateStruct(dateModel);
+        let reservation: Reservation = { peopleAttending: peopleAttending, reservationDate: reservationDate, tableReserved: tableToReserve, venue: venue };
+
+        return this.http.post(RESERVATIONS_URL, reservation, this.userTokenRequestHandler.constructRequestHeaders(true))
+            .map(res => Observable.of(true))
+            .catch(this.handleError.bind(this));
     }
 
     handleError(error: Response | any) {
@@ -62,7 +68,7 @@ export class ReservationService {
 
             if (errorCode == 11) {
                 this.triggerTokenRefresh();
-            } 
+            }
         } else {
             errorCode = 0;
         }
@@ -70,22 +76,40 @@ export class ReservationService {
         return Observable.throw(errorCode);
     }
 
-    private handleTokenRefreshed(){
+    private handleTokenRefreshed() {
         this.reservationsRefreshTrigger.next(true);
     }
 
-    private triggerTokenRefresh(){
-        this.authenticationService.refreshAccessToken().subscribe(tokenRefreshed => this.handleTokenRefreshed(),errorCode => this.userStateChangeService.triggerStateChange("search"));
+    private triggerTokenRefresh() {
+        this.authenticationService.refreshAccessToken().subscribe(tokenRefreshed => this.handleTokenRefreshed(), errorCode => this.userStateChangeService.triggerStateChange("search"));
     }
 
-
     checkForTable(venueId: string, dateModel: NgbDateStruct, peopleAttending: number): Observable<Table[]> {
-        return new Observable(observer => {
-            observer.next(this.tables);
-            observer.complete();
+        let reservationDate = this.stringifyDateStruct(dateModel);
 
-            // Note that this is optional, you do not have to return this if you require no cleanup
-            return function () { console.log('disposed'); };
-        });
+        return this.http
+            .get(RESERVATIONS_URL + `/${venueId}/${reservationDate}/${peopleAttending}`)
+            .map(res => {
+                return res.json() as Table[];
+            }).catch(this.handleError.bind(this));
+    }
+
+    stringifyDateStruct(dateModel: NgbDateStruct): string {
+        let month: string = this.formatDateValue(dateModel.month);
+        let day: string = this.formatDateValue(dateModel.day);
+
+        return `${dateModel.year}-${month}-${day}`;
+    }
+
+    formatDateValue(dateVal: number): string {
+        let formattedDateVal: string;
+
+        if (dateVal < 10) {
+            formattedDateVal = `0${dateVal}`;
+        } else {
+            formattedDateVal = "" + dateVal;
+        }
+
+        return formattedDateVal;
     }
 }

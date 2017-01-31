@@ -11,7 +11,7 @@
             <div></div>
         </div>
     </div>
-    <div *ngIf="!loading">
+    <div *ngIf="!loading && !reservationSuccess">
         <div *ngIf="freeTables.length > 0" [class.success]="freeTablesMatchingCriteria">
             <p>Разполагаме с <span>{{freeTables.length}} места</span> задоволяващи критерия ви!
             </p>
@@ -21,5 +21,10 @@
             <p>Разполагаме с {{freeTables.length}} задоволяващи критерия ви!</p>
             <a><i class="fa fa-arrow-left" aria-hidden="true"></i>Промени критерия</a>
         </div>
+    </div>
+    <div id="reservationSuccess" class="row" *ngIf="!loading && reservationSuccess">
+        <p class="offset-lg-1 col-lg-10"> Запитване за резервация изпратено
+            <i class="fa fa-check" aria-hidden="true"></i>
+        </p>
     </div>
 </div>

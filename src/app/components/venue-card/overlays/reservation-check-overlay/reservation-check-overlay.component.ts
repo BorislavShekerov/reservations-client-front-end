@@ -20,13 +20,14 @@ export class ReservationCheckOverlayComponent implements OnInit {
   @Input() private dateModel;
   @Output() overlayCloseEventEmitter: EventEmitter<any> = new EventEmitter();
   @Output() freeTablesCheckEventEmitter: EventEmitter<any> = new EventEmitter();
-
+  private minDate: any;
+  
   constructor(private _i18n: I18n) { this._i18n.language = "bgShort"; }
 
   ngOnInit() {
     let now: Date = new Date();
     this.dateModel = { year: now.getFullYear(), month: now.getMonth() + 1, day: now.getDate() };
-
+    this.minDate = { year: now.getFullYear(), month: now.getMonth() + 1, day: now.getDate() };
     if (!this.peopleAttending) {
       this.peopleAttending = 2;
     }
